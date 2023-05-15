@@ -1,6 +1,8 @@
 from random import random
 
 from django.contrib.auth import authenticate, login, logout
+from django.http import HttpResponse
+
 from .models import User
 from django.core.paginator import Paginator, PageNotAnInteger, EmptyPage
 from django.shortcuts import render, get_object_or_404, redirect
@@ -8,6 +10,9 @@ from .models import *
 from application.models import *
 from software.models import *
 from products.models import *
+
+from django.core.mail import send_mail
+from django.conf import settings
 
 
 # Create your views here.
@@ -55,13 +60,20 @@ def career(request):
         address = request.POST.get('address')
         city = request.POST.get('city')
         field = request.POST.get('field')
-        cv = request.FILES['cv']
+        cv = request.FILES.get('cv')
         remark = request.POST.get('remark')
 
         data = Career.objects.create(name=name, surname=surname, experience=experience, address=address, city=city,
                                      field=field, cv=cv, remark=remark)
         data.save()
         msg = "Your Career Details Has Been Submitted!"
+        subject = f"Career Details Person Name: {name} {surname} and Experience: {experience}"
+        message = f"Person Name : {name}  {surname}\n Person Experience : {experience} \n Address : {address}" \
+                  f" \n City Name : {city} \n Fields Name : {field}, Resume/CV: {data.cv.url} \n Remarks {remark}"
+        from_email = settings.EMAIL_HOST_USER
+        recipient_list = settings.SENDING_EMAIL
+        send_mail(subject, message, from_email, recipient_list)
+
         return render(request, 'success.html', {'msg': msg})
     return render(request, 'career.html', {'visit': visit, 'cat': cat, 'mcat': mcat, 'pdf': pdf})
 
@@ -80,6 +92,12 @@ def contact(request):
         data = ContactUs.objects.create(name=name, email=email, sub=sub, msg=msg)
         data.save()
         msg = "Your contact details has been sent !"
+        subject = f"Contact Details Person Name: {name} and Email: {email}"
+        message = f"Person Name : {name} \n Person Email : {email} \n Subject : {sub}" \
+                  f" \n Messages Details : {msg} \n "
+        from_email = settings.EMAIL_HOST_USER
+        recipient_list = settings.SENDING_EMAIL
+        send_mail(subject, message, from_email, recipient_list)
         return render(request, 'success.html', {'msg': msg})
     return render(request, 'contact.html', {'visit': visit, 'cat': cat, 'mcat': mcat, 'pdf': pdf})
 
@@ -185,9 +203,19 @@ def partner(request):
                                       state=state,
                                       country=country, zipcode=zipcode, sales_employee=sales_employee,
                                       technical_employee=technical_employee,
-                                      major_brand=major_brand,gst=gst, password=password)
+                                      major_brand=major_brand, gst=gst, password=password)
         data.save()
         msg = "Your Registrations Successfully Completed!"
+        subject = f"Partnership Details Company Name: {company} and User Name: {name}"
+        message = f"Person Name : {name} \n Person Email : {email} \n Person Contact Number:{phone} \n" \
+                  f" Person Company Name : {company} \n Person Website Name: {website} \n Gst Details: {gst} \n" \
+                  f"Business Year: {year_business} \n Types of Business: {type_business} \n Revenue: {revenue}" \
+                  f" \n Person Country Name : {country} \n Person State Name: {state} \n Person City Name : {city} \n" \
+                  f"Address : {revenue} \n Zip Code : {zipcode}, \n Sales Employee : {sales_employee}, \n" \
+                  f"Technical Employee : {technical_employee} \n Major Brand Name : {major_brand}"
+        from_email = settings.EMAIL_HOST_USER
+        recipient_list = settings.SENDING_EMAIL
+        send_mail(subject, message, from_email, recipient_list)
         return render(request, 'success.html', {'msg': msg})
     return render(request, 'partner.html', {'visit': visit, 'cat': cat, 'mcat': mcat, 'pdf': pdf})
 
@@ -219,8 +247,6 @@ def privacy(request):
     pdf = PDF.objects.all()
 
     return render(request, 'privacy.html', {'visit': visit, 'cat': cat, 'mcat': mcat, 'pdf': pdf})
-
-
 
 
 def ssl(request):
@@ -265,7 +291,7 @@ def videogallery(request):
     mcat = MicroCategory.objects.all()
     pdf = PDF.objects.all()
     video = VideoGallery.objects.all()
-    return render(request, 'videogallery.html', {'visit': visit, 'cat': cat, 'mcat': mcat, 'pdf': pdf, 'video':video})
+    return render(request, 'videogallery.html', {'visit': visit, 'cat': cat, 'mcat': mcat, 'pdf': pdf, 'video': video})
 
 
 def support(request):
@@ -295,7 +321,6 @@ def support(request):
     return render(request, 'login.html', {'visit': visit, 'cat': cat, 'mcat': mcat, 'pdf': pdf})
 
 
-
 def logout_attempt(request):
     logout(request)
     return redirect('userlogin')
@@ -304,4 +329,15 @@ def logout_attempt(request):
 def waste_management(request):
     cat = Category.objects.all()
     pdf = PDF.objects.all()
-    return render(request, 'e-waste-management.html', {'cat':cat, 'pdf':pdf})
+    return render(request, 'e-waste-management.html', {'cat': cat, 'pdf': pdf})
+
+
+def send_email(request):
+    subject = 'Hello from Django'
+    message = 'This is a test email sent from Django.'
+    from_email = settings.EMAIL_HOST_USER
+    recipient_list = settings.SENDING_EMAIL
+
+    send_mail(subject, message, from_email, recipient_list)
+
+    return HttpResponse('Email sent successfully')

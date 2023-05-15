@@ -25,7 +25,7 @@ SECRET_KEY = 'django-insecure-2s0xbos8*!0@n^5_p9_4%wvc=ni-@sd!&7ejgj%r&e+u!@bc-*
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = ['http://endroidusa.com/', 'endroidusa.com', 'www.endroidusa.com', 'https://endroidusa.com']
+ALLOWED_HOSTS = ['http://endroidusa.com/', 'endroidusa.com', 'www.endroidusa.com', 'https://endroidusa.com', '*']
 
 # Application definition
 
@@ -149,3 +149,15 @@ JAZZMIN_SETTINGS = {
 }
 
 AUTH_USER_MODEL = 'main.User'
+
+
+# settings.py
+
+EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
+EMAIL_HOST = 'smtp.gmail.com'
+EMAIL_PORT = 587
+EMAIL_USE_TLS = True
+EMAIL_HOST_USER = 'dbsindia00@gmail.com'
+EMAIL_HOST_PASSWORD = '#dbsindia123'
+
+SENDING_EMAIL = ["knand4930@gmail.com"]

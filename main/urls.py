@@ -22,4 +22,5 @@ urlpatterns = [
     path('support', support, name='support'),
     path('logout', logout_attempt, name='logout_attempt'),
     path('e-waste-management', waste_management, name='waste_management'),
+    path('send_email', send_email, name='send_email'),
 ]

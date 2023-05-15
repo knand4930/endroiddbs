@@ -419,8 +419,10 @@
     {% for p in pdf %}
     {% if forloop.counter == 1 %}
   <div class="my-1">
+      {% if p.pdf %}
     <a href="{{ p.pdf.url }}" target="_blank
         " alt="logo.jpg"><i class="bi bi-file-earmark-pdf-fill text-danger fs-1"></i></a>
+      {% endif %}
     <div style="font-size: smaller;">catalogue</div>
   </div>
     {% endif %}

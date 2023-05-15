@@ -5,7 +5,8 @@ from main.models import *
 from software.models import *
 
 from products.models import *
-
+from django.core.mail import send_mail
+from django.conf import settings
 
 # Create your views here.
 
@@ -96,7 +97,14 @@ def singleproduct(request, slug):
                                              state=state, city=city, msg=msg,
                                              product_name=product_name, product_cat=product_cat)
         data.save()
-        msg = "Your Contact Data Has Been Successfully Sent!"
+        subject = f"Product Request Details Products Name: {product_name} and User Name: {name}"
+        message = f"Person Name : {name} \n Person Email : {email} \n Person Company Name : {company}" \
+                  f" \n Person Country Name : {country} \n Person State Name: {state} \n Person City Name : {city} \n" \
+                  f"Send Request Products : {product_name} \n Send Request Product category {product_cat}"
+        from_email = settings.EMAIL_HOST_USER
+        recipient_list = settings.SENDING_EMAIL
+        send_mail(subject, message, from_email, recipient_list)
+        msg = "Your Details Has Been Successfully Sent!"
         return render(request, 'success.html', {'msg': msg})
 
     return render(request, 'single-product.html', {'prod': prod, 'visit': visit, 'cat': cat, 'mcat': mcat, 'pdf': pdf})

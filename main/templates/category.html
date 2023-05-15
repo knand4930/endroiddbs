@@ -41,11 +41,12 @@
                                         <article class="list-product p-0 text-center">
                                             <div class="product-inner">
                                                 <div class="img-block img-cctv-page">
+                                                    {% if p.img %}
                                                     <a href="{% url 'singleproduct' p.slug %}">
                                                         <img class="img-fluid" src="{{ p.img.url }}" alt="{{ p.title }}" c />
                                                        
                                                     </a>
-                                                   
+                                                   {% endif %}
                                                 </div>
                                                 <ul class="product-flag">
                                                     <li class="new"></li>
