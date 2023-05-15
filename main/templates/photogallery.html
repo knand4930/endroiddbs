@@ -1,0 +1,70 @@
+{% extends 'master.html' %}
+{% block content %}
+{% load social_share %}
+
+<!-- <?php include 'header.php'; ?> -->
+<div class="breadcrumb-area">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-12">
+                <div class="breadcrumb-content">
+                    <ul class="nav">
+                        <li><a href="/">Home</a></li>
+                        <li>Video Photo</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="container py-5">
+    {% for g in gallery %}
+    <div class="row mt-3">
+       <h5>{{ g.name }}</h5>
+        {% for p in g.gallery_set.all %}
+        <div class="col-lg-3 col-md-3 my-2">
+            <div class="p-2">
+                <a href="{{ p.img.url }}" target="_blank"><img src="{{ p.img.url }}" class="img-fluid rounded-3 shadow-sm" alt="" width="100%" height="auto"></a>
+                <div class="text-center py-2"></div>
+                <div class="d-flex justify-content-between px-2">
+                    <div class="fs-5" style="cursor: pointer;"><a href="{{ p.img.url }}" download="download"> Download</a></div>
+                    <div class="">
+                        <div class="social-info">
+                            <ul>
+                              <li>{% post_to_facebook object_or_url "<i class='ion-social-facebook fs-5 mx-2'></i>" %}</li>
+				<li>{% post_to_twitter "New Gallery: {{p.title}}. Check it out!" object_or_url "<i class='ion-social-twitter fs-5 mx-2'></i>" %}</li>
+				<li>{% post_to_linkedin object_or_url "<i class='ion-social-linkedin fs-5 mx-2'></i>" %}</li>
+                               
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>  
+        {% endfor %}
+    </div>
+    {% endfor %}
+
+</div>
+
+
+
+<!-- <?php include 'footer.php'; ?> -->
+
+
+<script>
+        const shareButton = document.getElementById('share-button');
+        shareButton.addEventListener('click', () => {
+            if (navigator.share) {
+                navigator.share({
+                    title: '{{ image.title }}',
+                    text: '{{ image.description }}',
+                    url: '{{ request.build_absolute_uri }}'
+                })
+                    .then(() => console.log('Image shared successfully.'))
+                    .catch((error) => console.error('Error sharing image:', error));
+            }
+        });
+   </script>
+{% endblock %}

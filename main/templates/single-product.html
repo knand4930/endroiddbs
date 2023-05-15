@@ -1,0 +1,168 @@
+{% extends 'master.html' %}
+{% block content %}
+
+
+<!-- <?php include 'header.php'; ?> -->
+<div class="breadcrumb-area">
+  <div class="container">
+    <div class="row">
+      <div class="col-md-12">
+        <div class="breadcrumb-content">
+          <ul class="nav">
+            <li><a href="/">Home</a></li>
+            <li>{{ prod.title }}</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<!-- Breadcrumb Area End-->
+<!-- Shop details Area start -->
+<style>
+  .content-center{
+     display: flex;
+     justify-content: center;
+     align-items: center;
+  }
+</style>
+<section class="product-details-area mtb-60px">
+  <div class="container">
+    <div class="row">
+      <div class="col-xl-6 col-lg-6 col-md-12 content-center" >
+        <img class="first-img" src="{{ prod.img.url }}" alt="{{ prod.title }}" style="width:300px; height:300px;"/>
+         </div>
+      <div class="col-xl-6 col-lg-6 col-md-12">
+        <div class="product-details-content">
+          <!-- <p class="reference">Reference:<span> demo_17</span></p> -->
+          <h2 class="fw-bold">{{ prod.model_details }}</h2>
+	<h6>{{ prod.title }} </h6>
+          <h3>{{ msg }}</h3>
+          <div class="pro-details-list">
+            {{ prod.short_description | safe }}
+          </div>
+
+        {% if request.user.is_status %}
+          <h5>MRP : <i class="bi bi-currency-rupee"></i>{{ prod.price }} /-</h5>
+          <h5>Dealer Price: <i class="bi bi-currency-rupee"></i>{{ prod.dealer_price }} </h5>
+          <h6><span style="font-size:smaller !important;">(INCLUSIVE OF ALL TAXES)</span> </h6>
+                {% else %}
+          {% endif%}
+          
+          <!-- <div class="pro-details-social-info">
+            <span>Share</span>
+            <div class="social-info">
+              <ul>
+                <li>
+                  <a title="Facebook" href="#"><i class="ion-social-facebook"></i></a>
+                </li>
+                <li>
+                  <a title="Twitter" href="#"><i class="ion-social-twitter"></i></a>
+                </li>
+                <li>
+                  <a title="Google+" href="#"><i class="ion-social-google"></i></a>
+                </li>
+                <li>
+                  <a title="Instagram" href="#"><i class="ion-social-instagram"></i></a>
+                </li>
+              </ul>
+            </div>
+          </div> -->
+  
+	      <div class="pro-details-policy">
+            {% if prod.download %}
+            <a href="{{ prod.download.url }}" download="download" class="btn btn-dark">Download Datasheet</a>
+            {% endif %}
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+<!-- Shop details Area End -->
+<!-- product details description area start -->
+<div class="description-review-area mb-50px bg-light-gray-3 ptb-50px">
+  <div class="container">
+    <div class="description-review-wrapper">
+      <div class="description-review-topbar nav">
+        <a data-bs-toggle="tab" href="#des-details1">Description</a>
+        <a class="active" data-bs-toggle="tab" href="#des-details2">Product Details</a>
+        <a data-bs-toggle="tab" href="#des-details3">Request Information</a>
+      </div>
+      <div class="tab-content description-review-bottom">
+        <div id="des-details2" class="tab-pane active">
+          <div class="product-anotherinfo-wrapper">
+           {{ prod.details|safe }}
+          </div>
+        </div>
+        <div id="des-details1" class="tab-pane">
+          <div class="product-description-wrapper">
+            {{ prod.description | safe }}
+          </div>
+        </div>
+        <div id="des-details3" class="tab-pane">
+          <div class="row justify-content-center">
+
+
+            <div class="col-lg-12">
+              <div class="ratting-form-wrapper pl-50">
+                <div class="ratting-form">
+                  <form method="post" action="#">
+                    {% csrf_token %}
+                    <div class="row">
+
+                      <div class="col-md-6">
+                        <div class="rating-form-style mb-10">
+                          <input placeholder="Name" name="name" type="text" />
+                        </div>
+                      </div>
+                      <div class="col-md-6">
+                        <div class="rating-form-style mb-10">
+                          <input placeholder="Email" name="email" type="email" />
+                        </div>
+                      </div>
+                      <div class="col-md-6">
+                        <div class="rating-form-style mb-10">
+                          <input placeholder="Your Company" name="company" type="text" />
+                        </div>
+                      </div>
+                      <div class="col-md-6">
+                        <div class="rating-form-style mb-10">
+                          <input placeholder="Your Country" name="country" type="text" />
+                        </div>
+                      </div>
+                      <div class="col-md-6">
+                        <div class="rating-form-style mb-10">
+                          <input placeholder="State" name="state" type="text" />
+                        </div>
+                      </div>
+                      <div class="col-md-6">
+                        <div class="rating-form-style mb-10">
+                          <input placeholder="City" name="city" type="text" />
+                        </div>
+                      </div>
+                      <div class="col-md-12">
+                        <div class="rating-form-style form-submit">
+                          <textarea name="msg" placeholder="Message"></textarea>
+                          <input type="submit" value="Submit" />
+                        </div>
+                      </div>
+
+                    </div>
+                  </form>
+                </div>
+              </div>
+            </div>
+
+
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<!-- product details description area end -->
+
+<!-- <?php include 'footer.php'; ?> -->
+
+{% endblock %}

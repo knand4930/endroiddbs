@@ -1,0 +1,132 @@
+{% extends 'master.html' %}
+{% block content %}
+
+
+
+<!-- <?php include 'header.php'; ?> -->
+    <!-- Breadcrumb Area Start -->
+    <div class="breadcrumb-area">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-12">
+                    <div class="breadcrumb-content">
+                        <ul class="nav">
+                            <li><a href="/">Home</a></li>
+                            <li>Contact Us</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- Breadcrumb Area End-->
+    <!-- contact area start -->
+    <div class="contact-area mtb-50px">
+        <div class="container">
+            <!-- <div class="contact-map mb-10">
+                <div class="mapouter">
+                    <div class="gmap_canvas">
+                        <iframe id="gmap_canvas" src="https://maps.google.com/maps?q=121%20King%20St%2C%20Melbourne%20VIC%203000%2C%20Australia&amp;t=&amp;z=13&amp;ie=UTF8&amp;iwloc=&amp;output=embed" frameborder="0" scrolling="no" marginheight="0" marginwidth="0"></iframe>
+                        <a href="https://sites.google.com/view/maps-api-v2/mapv2"></a>
+                    </div>
+                </div>
+            </div> -->
+            <div class="custom-row-2">
+<div class="col-lg-4 col-md-5 mb-lm-30px">
+                <div class="contact-info-wrap">
+                    <div class="single-contact-info">
+                        <!-- <div class="contact-icon">
+                            <i class="ion-android-call"></i>
+                        </div> -->
+                        <div class="contact-info-dec">
+                            <h6>Address</h6>
+                            <hr>
+                            <p class="add">
+                                <span class="address fw-bold">USA Office</span>:- <br> <span class="text-danger fw-bold">DBS SECURITY SYSTEM PVT LTD</span> <br> 1820 Avenue M#468 Brooklyn,NY 11230 USA <br>
+                                <span class="email">Email:</span>
+                                <a class="text-primary" href="mailto:info@digiteksystem.com">info@digiteksystem.com</a>
+                            </p>
+                        </div>
+                    </div>
+                    <div class="single-contact-info">
+                        <!-- <div class="contact-icon">
+                            <i class="ion-android-globe"></i>
+                        </div> -->
+                        <div class="contact-info-dec">
+                            <p class="add">
+                                <span class="address fw-bold">Corporate Office:-</span> <br> <span class="text-danger fw-bold">DBS SECURITY SYSTEM PVT LTD </span><br> 12/2 Main Mathura Road, Opp. Pillar No 75,
+                                Near Sarai Metro Station, Sector – 37,
+                                Faridabad, Haryana , India Pin Code-121003 <br>
+                                <span class="email">Email:</span><a href="mailto:sales@dbsindia.in" class="text-primary">sales@dbsindia.in</a>
+                                <br>
+                                <span class="phone">Call Us:</span> &lrm;0129-4608945
+                            </p>
+                        </div>
+                    </div>
+                    <div class="single-contact-info">
+                        <div class="contact-icon">
+                        <p class="text-dark">
+              <span class="address fw-bold text-dark">Service center:-</span> <br> <span class="text-danger fw-bold">DBS SECURITY SYSTEM PVT LTD </span><br> 20B/82B GF, Opp. Sant Nirankari Public School,
+              Tilak Nagar New Delhi, India Pin Code-110018 <br>
+              <span class="email">Email:</span> <a href="mailto:support@dbsindia.in">support@dbsindia.in</a><br>
+              <span class="phone">Call Us:</span> 9136533309/9136533304 (customer care)
+            </p>
+                        </div>
+                    </div>
+                    <div class="contact-social">
+                        <h3>Follow Us</h3>
+                        <div class="social-info">
+                            <ul>
+                                <li>
+                                    <a href="#"><i class="ion-social-facebook"></i></a>
+                                </li>
+                                <li>
+                                    <a href="#"><i class="ion-social-twitter"></i></a>
+                                </li>
+                                <li>
+                                    <a href="#"><i class="ion-social-youtube"></i></a>
+                                </li>
+                                <li>
+                                    <a href="#"><i class="ion-social-google"></i></a>
+                                </li>
+                                <li>
+                                    <a href="#"><i class="ion-social-instagram"></i></a>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+                <div class="col-lg-8 col-md-7">
+                    <div class="contact-form">
+                        <div class="contact-title mb-30">
+                            <h2>Get In Touch</h2>
+                        </div>
+                        <form class="contact-form-style" method="post">
+                            {% csrf_token %}
+                            <div class="row">
+                                <div class="col-lg-6">
+                                    <input name="name" placeholder="Name*" type="text" required/>
+                                </div>
+                                <div class="col-lg-6">
+                                    <input name="email" placeholder="Email*" type="email" required/>
+                                </div>
+                                <div class="col-lg-12">
+                                    <input name="sub" placeholder="Subject*" type="text" required/>
+                                </div>
+                                <div class="col-lg-12">
+                                    <textarea name="msg" placeholder="Your Message*" required></textarea>
+                                    <button class="submit" type="submit">SEND</button>
+                                </div>
+                            </div>
+                        </form>
+                        <p class="form-messege"></p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- contact area end -->
+    <!-- <?php include 'footer.php'; ?> -->
+
+{% endblock %}

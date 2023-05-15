@@ -1,0 +1,546 @@
+{% extends 'master.html' %}
+{% load static %}
+{% load embed_video_tags %}
+{% block content %}
+
+
+
+
+<!-- <?php include 'header.php'; ?> -->
+<!-- Slider Start -->
+<div class="slider-area">
+  <div class="hero-slider-wrapper">
+    <!-- Single Slider  -->
+    {% for s in slider %}
+    <div class="single-slide slider-height-1 bg-img d-flex" data-bg-image="{{ s.img.url }}">
+      <div class="container align-self-center">
+        <div class="slider-content-1 slider-animated-1 text-left pl-60px">
+          <h1 class="animated color-black">
+            {{ s.title }} <br />
+            {{ s.name }}
+          </h1>
+          <p class="animated color-gray">{{ s.short }}</p>
+          <!-- <a href="shop-4-column.php" class="shop-btn animated">SHOP NOW</a> -->
+        </div>
+      </div>
+    </div>
+    <!-- Single Slider  -->
+    {% endfor %}
+  </div>
+</div>
+<!-- Slider End -->
+
+<!-- Latest product Start -->
+<div class="arrival-area">
+  <div class="container">
+    <div class="row">
+      <div class="col-md-12 my-5">
+        <div class="section-title">
+          <h2>Latest Product</h2>
+          <!-- Nav tabs -->
+          <!-- <ul class="nav nav-tabs sub-category">
+            <li class="nav-item">
+              <a class="nav-link active" data-bs-toggle="tab" href="#tab-1">Home Audio</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" data-bs-toggle="tab" href="#tab-2">Headphones</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" data-bs-toggle="tab" href="#tab-3">Cameras</a>
+            </li>
+          </ul> -->
+          <!-- Nav tabs -->
+        </div>
+      </div>
+    </div>
+    <!-- tab content -->
+    <div class="tab-content">
+      <!-- First-Tab -->
+      <div id="tab-1" class="tab-pane active fade">
+        <!-- Arrivel slider start -->
+        <div class="arrival-slider-wrapper slider-nav-style-1">
+        {% for p in products %}
+          {% if p.product_types == 'latest' or p.product_types == 'trending_latest' %}
+	
+          <div class="slider-single-item">
+            <!-- Single Item -->
+            <article class="list-product text-center">
+              <div class="product-inner">
+                <div class="" style="display: flex;justify-content: center;align-items: center;">
+                  <a href="{% url 'singleproduct' p.slug %}" class="thumbnail">
+                    <img class="first-img" src="{{ p.img.url }}" alt="" width="auto" height="80px"/>
+                    <!-- <img class="second-img" src="assets/images/product-image/5.jpg" alt="" /> -->
+                  </a>
+                </div>
+                <ul class="product-flag">
+                  <li class="new"></li>
+                </ul>
+                <div class="product-decs">
+                  <a class="inner-link" href="{% url 'singleproduct' p.slug %}"><span>{{ p.title }}</span></a>
+
+                  {% if p.category %}
+                  <h2><a href="{% url 'category' p.category.slug %}" class="product-link">{{ p.category.name }}</a></h2>
+
+                   {% elif p.sub_category %}
+                  <h2><a href="{% url 'sub_category' p.sub_category.slug %}" class="product-link">{{ p.sub_category.name }}</a></h2>
+
+                   {% elif p.micro_category %}
+                  <h2><a href="{% url 'micro_category' p.micro_category.slug  %}" class="product-link">{{ p.micro_category.name }}</a></h2>
+                  {% endif %}
+                  <!-- <div class="pricing-meta">
+                    <ul>
+                      <li class="old-price">$23.90</li>
+                      <li class="current-price">$21.51</li>
+                    </ul>
+                  </div> -->
+                </div>
+
+              </div>
+            </article>
+          </div>
+
+          {% endif %}
+        {% endfor %}
+
+        </div>
+        <!-- Arrivel slider end -->
+      </div>
+      <!-- First-Tab -->
+
+      <!-- Second-Tab -->
+      <div id="tab-2" class="tab-pane fade">
+        <!-- Arrivel slider start -->
+        <div class="arrival-slider-wrapper slider-nav-style-1">
+          <div class="slider-single-item">
+            <!-- Single Item -->
+            <article class="list-product text-center">
+              <div class="product-inner">
+                <div class="img-block">
+                  <!-- <a href="single-product.php" class="thumbnail">
+                    <img class="first-img" src="assets/images/product-image/4.jpg" alt="" />
+                    <img class="second-img" src="assets/images/product-image/5.jpg" alt="" />
+                  </a> -->
+
+                </div>
+                <ul class="product-flag">
+                  <li class="new"></li>
+                </ul>
+                <div class="product-decs">
+                  <!-- <a class="inner-link" href="shop-4-column.php"><span>STUDIO DESIGN</span></a>
+                  <h2>
+                    <a href="single-product.php" class="product-link">Edifier H840 Audiophile</a>
+                  </h2> -->
+                  <!-- <div class="pricing-meta">
+                    <ul>
+                      <li class="old-price">$23.90</li>
+                      <li class="current-price">$21.51</li>
+                    </ul>
+                  </div> -->
+                </div>
+
+              </div>
+            </article>
+          </div>
+
+
+          <div class="slider-single-item">
+            <!-- Single Item -->
+            <article class="list-product text-center"3>
+              <div class="product-inner">
+                <div class="img-block">
+                  <a href="single-product.php" class="thumbnail">
+                    <img class="first-img" src="{% static 'assets/images/product-image/8.jpg' %}" alt="" />
+                    <img class="second-img" src="assets/images/product-image/9.jpg" alt="" />
+                  </a>
+
+                </div>
+                <div class="product-decs">
+                  <a class="inner-link" href="shop-4-column.php"><span>STUDIO DESIGN</span></a>
+                  <h2>
+                    <a href="single-product.php" class="product-link">SoundBox Pro Portable</a>
+                  </h2>
+                  <!-- <div class="pricing-meta">
+                    <ul>
+                      <li class="old-price">$23.90</li>
+                      <li class="current-price">$21.51</li>
+                    </ul>
+                  </div> -->
+                </div>
+
+              </div>
+            </article>
+          </div>
+          <div class="slider-single-item">
+            <!-- Single Item -->
+            <article class="list-product text-center">
+              <div class="product-inner">
+                <div class="img-block">
+                  <a href="single-product.php" class="thumbnail">
+                    <img class="first-img" src="{% static 'assets/images/product-image/12.jpg' %}" alt="" />
+                    <img class="second-img" src="assets/images/product-image/13.jpg" alt="" />
+                  </a>
+
+                </div>
+                <div class="product-decs">
+                  <a class="inner-link" href="shop-4-column.php"><span>GRAPHIC CORNER</span></a>
+                  <h2>
+                    <a href="single-product.php" class="product-link">Naham WiFi HD 1080P</a>
+                  </h2>
+                  <!-- <div class="pricing-meta">
+                    <ul>
+                      <li class="current-price">$21.51</li>
+                    </ul>
+                  </div> -->
+                </div>
+
+              </div>
+            </article>
+          </div>
+          <div class="slider-single-item">
+            <!-- Single Item -->
+            <article class="list-product text-center">
+              <div class="product-inner">
+                <div class="img-block">
+                  <a href="single-product.php" class="thumbnail">
+                    <img class="first-img" src="{% static 'assets/images/product-image/16.jpg' %}" alt="" />
+                    <img class="second-img" src="{% static 'assets/images/product-image/17.jpg' %}" alt="" />
+                  </a>
+
+                </div>
+                <div class="product-decs">
+                  <a class="inner-link" href="shop-4-column.php"><span>GRAPHIC CORNER</span></a>
+                  <h2>
+                    <a href="single-product.php" class="product-link">Polk Audio T30 Speaker</a>
+                  </h2>
+                  <!-- <div class="pricing-meta">
+                    <ul>
+                      <li class="current-price">$21.51</li>
+                    </ul>
+                  </div> -->
+                </div>
+
+              </div>
+            </article>
+          </div>
+          <div class="slider-single-item">
+            <!-- Single Item -->
+            <article class="list-product text-center">
+              <div class="product-inner">
+                <div class="img-block">
+                  <a href="single-product.php" class="thumbnail">
+                    <img class="first-img" src="{% static 'assets/images/product-image/20.jpg' %}" alt="" />
+                    <img class="second-img" src="{% static 'assets/images/product-image/21.jpg' %}" alt="" />
+                  </a>
+
+                </div>
+                <ul class="product-flag"></ul>
+                <div class="product-decs">
+                  <a class="inner-link" href="shop-4-column.php"><span>STUDIO DESIGN</span></a>
+                  <h2>
+                    <a href="single-product.php" class="product-link">Numkuda USB 2.0 Gamepad</a>
+                  </h2>
+                  <!-- <div class="pricing-meta">
+                    <ul>
+                      <li class="current-price">$21.51</li>
+                    </ul>
+                  </div> -->
+                </div>
+
+              </div>
+            </article>
+          </div>
+          <div class="slider-single-item">
+            <!-- Single Item -->
+            <article class="list-product text-center">
+              <div class="product-inner">
+                <div class="">
+                  <a href="single-product.php" class="thumbnail">
+                    <img class="first-img" src="{% static 'assets/images/product-image/19.jpg'  %}" alt="" />
+                    <img class="second-img" src="{% static 'assets/images/product-image/20.jpg'  %}" alt="" />
+                  </a>
+
+                </div>
+                <ul class="product-flag">
+                  <li class="new"></li>
+                </ul>
+                <div class="product-decs">
+                  <a class="inner-link" href="shop-4-column.php"><span>STUDIO DESIGN</span></a>
+                  <h2>
+                    <a href="single-product.php" class="product-link">Silicon Sleeping Earbuds</a>
+                  </h2>
+                  <!-- <div class="pricing-meta">
+                    <ul>
+                      <li class="old-price">$23.90</li>
+                      <li class="current-price">$21.51</li>
+                    </ul>
+                  </div> -->
+                </div>
+
+              </div>
+            </article>
+          </div>
+
+        </div>
+        <!-- Arrivel slider end -->
+      </div>
+      <!-- Second-Tab -->
+
+
+    </div>
+    <!-- tab content end-->
+  </div>
+</div>
+<!-- Latest End -->
+
+
+<!-- CCTV CAMERA Start -->
+<div class="arrival-area">
+  <div class="container">
+    <div class="row">
+      <div class="col-md-12 my-5">
+        <div class="section-title">
+          <h2>Trending Product</h2>
+        </div>
+      </div>
+    </div>
+    <!-- tab content -->
+    <div class="tab-content">
+      <!-- First-Tab -->
+      <div id="tab-1" class="tab-pane active fade">
+        <!-- Arrivel slider start -->
+        <div class="arrival-slider-wrapper slider-nav-style-1">
+
+          {% for t in products %}
+          {% if t.product_types == 'trending' or t.product_types == 'trending_latest' %}
+          <div class="slider-single-item">
+            <!-- Single Item -->
+            <article class="list-product text-center">
+              <div class="product-inner">
+                <div class="" style="display: flex;justify-content: center;align-items: center;">
+                  <a href="{% url 'singleproduct' t.slug %}" class="thumbnail">
+                    <img class="first-img5" src="{{ t.img.url }}" alt=""  height="80px" width="auto" style="margin-top: 10pxs;"/>
+                  </a>
+
+                </div>
+                <ul class="product-flag">
+                  <li class="new"></li>
+                </ul>
+                <div class="product-decs">
+                  <a class="inner-link" href="{% url 'singleproduct' t.slug %}"><span>{{ t.title }}</span></a>
+                    {% if t.category %}
+                  <h2><a href="{% url 'category' t.category.slug %}" class="product-link">{{ t.category.name }}</a></h2>
+
+                   {% elif t.sub_category %}
+                  <h2><a href="{% url 'sub_category' t.sub_category.slug %}" class="product-link">{{ t.sub_category.name }}</a></h2>
+
+                   {% elif t.micro_category %}
+                  <h2><a href="{% url 'micro_category' t.micro_category.slug  %}" class="product-link">{{ t.micro_category.name }}</a></h2>
+                  {% endif %}
+                </div>
+
+              </div>
+            </article>
+          </div>
+          {% endif %}
+          {% endfor %}
+        </div>
+        <!--CCTV CAMERA End -->
+      </div>
+
+    </div>
+    <!-- tab content end-->
+  </div>
+</div>
+
+
+
+<div class="shop-category-area mt-30px">
+  <div class="container">
+    <div class="row">
+      <div class="col-md-12">
+        <div class="section-title">
+          <h2>TV Commercials</h2>
+        </div>
+      </div>
+
+      {% for v in video %}
+      <div class="col-lg-4 col-md-3 my-2">
+        <div class="p-2">
+          <iframe width="100%" height="260" class="rounded" src="{{ v.video }}" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
+          <div class="text-center py-2"><span class="fw-bold text-danger fs-5">{{ v.title }}
+            </span></div>
+
+        </div>
+      </div>
+      {% endfor %}
+
+    </div>
+  </div>
+</div>
+<!--  -->
+<!-- <div class="container my-3">
+  <div class="row justify-content-center">
+    <div class="col-md-12">
+      <div class="section-title">
+        <h2>Achievement</h2>
+      </div>
+    </div>
+
+    <div class="col-lg-4 text-center">
+      <i class="bi bi-person-fill fs-1"></i>
+      <h1 class="counter" data-target="12000"></h1>
+      <span>Total Visitors</span>
+    </div>
+
+
+    <div class="col-lg-4 text-center">
+      <i class="bi bi-person-fill fs-1"></i>
+      <h1 class="counter" data-target="2000"></h1>
+      <span>Monthly Visitors</span>
+    </div>
+
+
+    <div class="col-lg-4 text-center">
+      <i class="bi bi-person-fill fs-1"></i>
+      <h1 class="counter" data-target="989"></h1>
+      <span> Daily Visitors</span>
+    </div>
+  </div>
+</div> -->
+<!-- Static Area Start -->
+<div class="static-area mtb-50px">
+  <div class="container">
+    <div class="col-md-12">
+      <div class="section-title">
+        <h2>Applications</h2>
+      </div>
+    </div>
+    <div class="static-area-wrap">
+      <div class="row justify-content-center">
+        <!-- Static Single Item Start -->
+        <div class="col-lg-4 col-xs-12 col-md-6 col-sm-6 py-3 mb-md-30px mb-lm-30px">
+          <div class="single-static">
+            <img src="{% static 'assets/icon/ticket.png'  %}" height="50px" width="auto" alt="" class="img-responsive" />
+            <div class="single-static-meta">
+              <h4>Airport</h4>
+            </div>
+          </div>
+        </div>
+        <!-- Static Single Item End -->
+        <!-- Static Single Item Start -->
+        <div class="col-lg-4 col-xs-12 col-md-6 col-sm-6 py-3 mb-md-30px mb-lm-30px">
+          <div class="single-static">
+            <img src="{% static 'assets/icon/villa.png' %}" height="50px" width="auto" alt="" class="img-responsive" />
+            <div class="single-static-meta">
+              <h4>villa</h4>
+            </div>
+          </div>
+        </div>
+        <!-- Static Single Item End -->
+        <!-- Static Single Item Start -->
+        <div class="col-lg-4 col-xs-12 col-md-6 col-sm-6 py-3 mb-sm-30px">
+          <div class="single-static">
+            <img src="{% static 'assets/icon/office.png'  %}" height="50px" width="auto" alt="" class="img-responsive" />
+            <div class="single-static-meta">
+              <h4>Office</h4>
+            </div>
+          </div>
+        </div>
+        <!-- Static Single Item End -->
+        <!-- Static Single Item Start -->
+        <div class="col-lg-4 col-xs-12 col-md-6 col-sm-6 py-3">
+          <div class="single-static">
+            <img src="{% static 'assets/icon/hotel.png' %}" height="50px" width="auto" alt="" class="img-responsive" />
+            <div class="single-static-meta">
+              <h4>Hotel</h4>
+            </div>
+          </div>
+        </div>
+        <!-- Static Single Item End -->
+        <!-- new -->
+        <!-- Static Single Item Start -->
+        <div class="col-lg-4 col-xs-12 col-md-6 col-sm-6 py-3">
+          <div class="single-static">
+            <img src="{% static 'assets/icon/data-center.png'  %}" height="50px" width="auto" alt="" class="img-responsive" />
+            <div class="single-static-meta">
+              <h4>Data Center</h4>
+            </div>
+          </div>
+        </div>
+        <!-- Static Single Item End -->
+        <!-- Static Single Item Start -->
+        <div class="col-lg-4 col-xs-12 col-md-6 col-sm-6 py-3">
+          <div class="single-static">
+            <img src="{% static 'assets/icon/bank.png' %}" height="50px" width="auto" alt="" class="img-responsive" />
+            <div class="single-static-meta">
+              <h4>Bank</h4>
+              <p></p>
+            </div>
+          </div>
+        </div>
+        <!-- Static Single Item End -->
+        <!-- Static Single Item Start -->
+        <div class="col-lg-4 col-xs-12 col-md-6 col-sm-6 py-3">
+          <div class="single-static">
+            <img src="{% static 'assets/icon/apartment.png' %}" height="50px" width="auto" alt="" class="img-responsive" />
+            <div class="single-static-meta">
+              <h4>Apartment</h4>
+            </div>
+          </div>
+        </div>
+        <!-- Static Single Item End -->
+        <!-- Static Single Item Start -->
+        <div class="col-lg-4 col-xs-12 col-md-6 col-sm-6 py-3">
+          <div class="single-static">
+            <img src="{% static 'assets/icon/budget.png'  %}" height="50px" width="auto" alt="" class="img-responsive" />
+            <div class="single-static-meta">
+              <h4>Finance</h4>
+            </div>
+          </div>
+        </div>
+        <!-- Static Single Item End -->
+        <!-- Static Single Item Start -->
+        <div class="col-lg-4 col-xs-12 col-md-6 col-sm-6 py-3">
+          <div class="single-static">
+            <img src="{% static 'assets/icon/hospital.png'  %}" height="50px" width="auto" alt="" class="img-responsive" />
+            <div class="single-static-meta">
+              <h4>Hospital</h4>
+            </div>
+          </div>
+        </div>
+        <!-- Static Single Item End -->
+        <!-- Static Single Item Start -->
+      </div>
+    </div>
+  </div>
+</div>
+<!-- Static Area End -->
+
+<script>
+  const counters = document.querySelectorAll('.counter');
+
+  counters.forEach(counter => {
+    counter.innerText = '0';
+
+    const updateCounter = () => {
+      const target = +counter.getAttribute('data-target')
+      const c = +counter.innerText;
+
+      const increment = target / 150;
+
+      if (c < target) {
+        counter.innerText = `${Math.ceil(c+increment)}`
+        setTimeout(updateCounter, 1)
+      } else {
+        counter.innerText = target
+      }
+    }
+    updateCounter();
+  })
+</script>
+
+
+
+
+
+{% endblock %}

@@ -1,0 +1,168 @@
+{% extends 'master.html' %}
+{% block content %}
+
+
+<!-- <?php include 'header.php'; ?> -->
+<!-- Breadcrumb Area Start -->
+<div class="breadcrumb-area">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-12">
+                <div class="breadcrumb-content">
+                    <ul class="nav">
+                        <li><a href="/">Home</a></li>
+                        <li>Software</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- Breadcrumb Area End-->
+<!-- Shop Category Area End -->
+<div class="shop-category-area mt-30px">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-9 order-lg-last col-md-12 order-md-first">
+                <div class="row">
+
+
+                    <div class="col-lg-12 shadow-sm rounded py-2 my-2">
+                        <h5>Category</h5>
+                        <table class="table">
+                            <thead>
+                                <tr>
+                                    <th scope="col">S.No</th>
+                                    <th scope="col">Software name</th>
+                                    <th scope="col">Version</th>
+                                    <th scope="col">Release Note</th>
+                                    <th scope="col">Download</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                            {% for v in var %}
+                                <tr>
+                                    <th scope="row">{{ v.id }}</th>
+                                    <td>{{ v.name }}</td>
+                                    <td>{{ v.version }} </td>
+                                    {% if v.release_note %}
+                                    <td><a href="{{ v.release_note.url }}" target="_blank"><i class="bi bi-file-earmark-ruled-fill text-danger"></i></td>
+                                    {% endif %}
+                                    {% if v.download %}
+                                    <td><a href="{{ v.download.url }}" target="_blank"><i class="bi bi-file-earmark-arrow-down-fill text-danger"></i></td>
+                                    {% endif %}
+                                </tr>
+
+                            {% endfor %}
+                            </tbody>
+                        </table>
+                    </div>
+
+<!--                    <div class="col-lg-12 shadow-sm rounded py-2 my-2">-->
+<!--                        <h5 class="text-success">Green</h5>-->
+<!--                        <table class="table">-->
+<!--                            <thead>-->
+<!--                                <tr>-->
+<!--                                    <th scope="col">S.No</th>-->
+<!--                                    <th scope="col">Software name</th>-->
+<!--                                    <th scope="col">Version</th>-->
+<!--                                    <th scope="col">Release Note</th>-->
+<!--                                    <th scope="col">Download</th>-->
+<!--                                </tr>-->
+<!--                            </thead>-->
+<!--                            <tbody>-->
+<!--                                <tr>-->
+<!--                                    <th scope="row">1</th>-->
+<!--                                    <td>KVMS Pro Win</td>-->
+<!--                                    <td>V2.01.0.T.190521 </td>-->
+<!--                                    <td><a href="#" target="_blank"><i class="bi bi-file-earmark-ruled-fill text-danger"></i></td>-->
+<!--                                    <td><i class="bi bi-file-earmark-arrow-down-fill text-danger"></i></td>-->
+<!--                                </tr>-->
+<!--                                <tr>-->
+<!--                                    <th scope="row">2</th>-->
+<!--                                    <td>KVMS Pro Win</td>-->
+<!--                                    <td>V2.01.0.T.190521 </td>-->
+<!--                                    <td><a href="#" target="_blank"><i class="bi bi-file-earmark-ruled-fill text-danger"></i></td>-->
+<!--                                    <td><i class="bi bi-file-earmark-arrow-down-fill text-danger"></i></td>-->
+<!--                                </tr>-->
+<!--                                <tr>-->
+<!--                                    <th scope="row">3</th>-->
+<!--                                    <td>KVMS Pro Win</td>-->
+<!--                                    <td>V2.01.0.T.190521 </td>-->
+<!--                                    <td><a href="#" target="_blank"><i class="bi bi-file-earmark-ruled-fill text-danger"></i></td>-->
+<!--                                    <td><i class="bi bi-file-earmark-arrow-down-fill text-danger"></i></td>-->
+<!--                                </tr>-->
+<!--                                <tr>-->
+<!--                                    <th scope="row">4</th>-->
+<!--                                    <td>KVMS Pro Win</td>-->
+<!--                                    <td>V2.01.0.T.190521 </td>-->
+<!--                                    <td><a href="#" target="_blank"><i class="bi bi-file-earmark-ruled-fill text-danger"></i></td>-->
+<!--                                    <td><i class="bi bi-file-earmark-arrow-down-fill text-danger"></i></td>-->
+<!--                                </tr>-->
+<!--                            </tbody>-->
+<!--                        </table>-->
+<!--                    </div>-->
+                </div>
+            </div>
+            <!-- Sidebar Area Start -->
+            <div class="col-lg-3 order-lg-first col-md-12 order-md-last mb-md-60px mb-lm-60px">
+                <div class="shop-sidebar-wrap">
+                    <div class="sidebar-widget-group mt-20">
+                        <h3 class="sidebar-title m-0"><span>Filter By</span></h3>
+                        <!-- Sidebar single item -->
+                        <div class="sidebar-widget no-cba mt-20">
+                            <h4 class="pro-sidebar-title">Software Model No.</h4>
+                            <form class="contact-form-style">
+                                <input name="name" placeholder="Enter Model No." type="text">
+                            </form>
+                        </div>
+                        <div class="sidebar-widget no-cba mt-20">
+                            <h4 class="pro-sidebar-title">software Name</h4>
+                            <form class="contact-form-style">
+                                <input name="name" placeholder="Enter software Name" type="text">
+                            </form>
+                        </div>
+                        <!-- Sidebar single item -->
+
+                    </div>
+                        <div class="sidebar-widget mb-30px">
+                        <h3 class="sidebar-title"><span>Categories</span></h3>
+                        <div class="accordion" id="accordionExample">
+
+                            {% for c in category %}
+
+                            <div class="card">
+                                <div class="card-header" id="headingOne">
+                                    <a href="#" data-bs-toggle="collapse" data-bs-target="#collapseOne" aria-expanded="false" aria-controls="collapseOne" class="collapsed">{{ c.name }}</a>
+                                </div>
+
+                                <div id="collapseOne" class="collapse" aria-labelledby="headingOne" data-bs-parent="#accordionExample">
+                                    <div class="card-body">
+                                        {% for s in c.softwaresubcategory_set.all %}
+                                        <ul class="category-list">
+                                            <li><a href="{% url 'softwarecategory' s.slug %}">{{ s.name }}</a></li>
+
+                                        </ul>
+                                        {% endfor %}
+                                    </div>
+                                </div>
+                            </div>
+                            {% endfor %}
+
+
+                        </div>
+                    </div>
+
+                    <!-- Sidebar single item -->
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+</div>
+<!-- Shop Category Area End -->
+
+
+<!-- <?php include 'footer.php'; ?> -->
+
+{% endblock %}

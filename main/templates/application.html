@@ -1,0 +1,184 @@
+{% extends 'master.html' %}
+{% load static %}
+{% block content %}
+
+
+<!-- <?php include 'header.php'; ?> -->
+<!-- Breadcrumb Area Start -->
+<div class="breadcrumb-area">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-12">
+                <div class="breadcrumb-content">
+                    <ul class="nav">
+                        <li><a href="/">Home</a></li>
+                        <li>Shop</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- Breadcrumb Area End-->
+<!-- Shop Category Area End -->
+<div class="shop-category-area mt-30px">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-9 order-lg-last col-md-12 order-md-first">
+                <!-- Shop Top Area Start -->
+
+                <!-- Shop Bottom Area Start -->
+                <div class="shop-bottom-area mt-35">
+                    <!-- Shop Tab Content Start -->
+                    <div class="tab-content jump">
+                        <!-- Tab One Start -->
+                        <div id="shop-1" class="tab-pane active">
+                            <div class="row m-0">
+                                 {% for i in page_obj.object_list %}
+                                <div class="mb-30px col-md-3 col-sm-6  p-0">
+                                    <div class="slider-single-item p-2">
+                                        <!-- Single Item -->
+                                        <article class="list-product p-0 text-center">
+                                            <div class="product-inner">
+                                                <!-- <div class="img-block">
+                                                    <a href="{% url 'singlepageapplication' i.slug %}" class="thumbnail">
+                                                        <img  class="img-fluid" src="" alt="" />
+                                                    </a>
+
+                                                </div> -->
+                                              
+                                                <div class="product-decs">
+                                                    <a class="inner-link" href="#"><span>{{ i.name }}</span></a>
+                                                    <h2><a href="" class="product-link">{{ i.model_details }}</a></h2>
+                                                    <h2><a href="" class="product-link">{{ i.cat }}</a></h2>
+                                                    <!-- <div class="pricing-meta">
+                                                        <ul>
+                                                            <li class="old-price">Rs.23.90</li>
+                                                            <li class="current-price">Rs.21.51</li>
+                                                        </ul>
+                                                    </div> -->
+                                                    <div class="d-flex justify-content-evenly">
+                                                        {% if i.google %}
+                                                        <div>
+                                                            <a href="{{ i.google }}"><img src="{% static 'assets/img//playstor.webp' %}" width="110px" width="auto" alt=""></a>
+                                                        </div>
+                                                        {% endif %}
+
+                                                        {% if i.ios %}
+                                                        <div>
+                                                            <a href="{{ i.iso }}"><img src="{% static 'assets/img//appstor.webp' %}" width="110px" width="auto" alt=""></a>
+                                                        </div>
+                                                        {% endif %}
+                                                    </div>
+                                                </div>
+
+
+
+                                            </div>
+                                        </article>
+                                        <!-- Single Item -->
+
+                                    </div>
+                                </div>
+                                  {% endfor %}
+                            </div>
+                        </div>
+                        <!-- Tab One End -->
+
+                    </div>
+                    <!-- Shop Tab Content End -->
+
+                    <!--  Pagination Area Start -->
+                    <div class="pro-pagination-style text-center mtb-50px">
+                        <ul>
+                            <li>
+                                 {%if page_obj.has_previous %}
+                                <a class="prev" href="?page={{page_obj.previous_page_number}}"><i class="ion-ios-arrow-left"></i></a>
+                                {% endif %}
+                            </li>
+                            {% for n in page_obj.paginator.page_range %}
+                                        {% if page_obj.number == n %}
+                            <li>
+                                <span class="active">{{ n }}<span class="sr-only"></span></span>
+                            </li>
+                             {% elif n > page_obj.number|add:'-3' and n < page_obj.number|add:'3' %}
+                            <li>
+                                <a href="?page={{ n }}">{{ n }}</a>
+                            </li>
+                              {% endif %}
+                             {% endfor %}
+
+                            <li>
+                                {%if page_obj.has_next %}
+                                <a class="next" href="?page={{page_obj.next_page_number}}"><i class="ion-ios-arrow-right"></i></a>
+                                {% endif %}
+                            </li>
+                        </ul>
+                    </div>
+                    <!--  Pagination Area End -->
+
+                </div>
+                <!-- Shop Bottom Area End -->
+            </div>
+            <!-- Sidebar Area Start -->
+            <div class="col-lg-3 order-lg-first col-md-12 order-md-last mb-md-60px mb-lm-60px">
+                <div class="shop-sidebar-wrap">
+                    <div class="sidebar-widget-group mt-20">
+                        <h3 class="sidebar-title m-0"><span>Filter By</span></h3>
+                        <!-- Sidebar single item -->
+                        <!-- <div class="sidebar-widget no-cba mt-20">
+                            <h4 class="pro-sidebar-title">Application</h4>
+                            <form class="contact-form-style">
+                                <input name="name" placeholder="Enter Model No." type="text">
+                            </form>
+                        </div> -->
+                        <!-- <div class="sidebar-widget no-cba mt-20">
+                            <h4 class="pro-sidebar-title">Product Name</h4>
+                            <form class="contact-form-style">
+                                <input name="name" placeholder="Enter Product Name" type="text">
+                            </form>
+                        </div> -->
+                        <!-- Sidebar single item -->
+                        <div class="sidebar-widget mb-30px">
+                        <h3 class="sidebar-title"><span>Categories</span></h3>
+                        <div class="accordion" id="accordionExample">
+
+                            {% for c in category %}
+
+                            <div class="card">
+                                <div class="card-header" id="headingOne">
+                                    <a href="#" data-bs-toggle="collapse" data-bs-target="#collapseOne" aria-expanded="false" aria-controls="collapseOne" class="collapsed">{{ c.name }}</a>
+                                </div>
+
+                                <div id="collapseOne" class="collapse" aria-labelledby="headingOne" data-bs-parent="#accordionExample">
+                                
+				 {% for s in c.applicationsubcategory_set.all %}
+   
+				 <div class="card-body">
+                                  
+                                        <ul class="category-list">
+                                            <li><a href="{% url 'catapplication' s.slug %}">{{ s.name }}</a></li>
+
+                                        </ul>
+					</div>
+                                        {% endfor %}
+                                    
+                                </div>
+                            </div>
+                            {% endfor %}
+
+
+                        </div>
+                    </div>
+                    </div>
+                  
+            </div>
+        </div>
+    </div>
+</div>
+</div>
+<!-- Shop Category Area End -->
+
+
+<!-- <?php include 'footer.php'; ?> -->
+{% endblock %}

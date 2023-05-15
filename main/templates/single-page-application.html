@@ -1,0 +1,247 @@
+{% extends 'master.html' %}
+{% block content %}
+
+
+<!-- <?php include 'header.php'; ?> -->
+<div class="breadcrumb-area">
+  <div class="container">
+    <div class="row">
+      <div class="col-md-12">
+        <div class="breadcrumb-content">
+          <ul class="nav">
+            <li><a href="/">Home</a></li>
+            <li>Single Product</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<!-- Breadcrumb Area End-->
+<!-- Shop details Area start -->
+<section class="product-details-area mtb-60px">
+  <div class="container">
+    <div class="row">
+      <div class="col-xl-6 col-lg-6 col-md-12">
+        <div class="product-details-img product-details-tab">
+          <div class="zoompro-wrap zoompro-2">
+
+            {% if apps.img %}
+            <div class="zoompro-border zoompro-span">
+              <img class="zoompro" src="{{ apps.img.url }}" data-zoom-image="assets/images/product-image/zoom/5.jpg" alt="" />
+            </div>
+            {% endif %}
+
+            {% if apps.img1 %}
+            <div class="zoompro-border zoompro-span">
+              <img class="zoompro" src="{{ apps.img1.url }}" data-zoom-image="assets/images/product-image/zoom/5.jpg" alt="" />
+            </div>
+            {% endif %}
+
+            {% if apps.img2 %}
+            <div class="zoompro-border zoompro-span">
+              <img class="zoompro" src="{{ apps.img2.url }}" data-zoom-image="assets/images/product-image/zoom/5.jpg" alt="" />
+            </div>
+            {% endif %}
+
+            {% if apps.img3 %}
+            <div class="zoompro-border zoompro-span">
+              <img class="zoompro" src="{{ apps.img3.url }}" data-zoom-image="assets/images/product-image/zoom/5.jpg" alt="" />
+            </div>
+            {% endif %}
+
+            {% if apps.img4 %}
+            <div class="zoompro-border zoompro-span">
+              <img class="zoompro" src="{{ apps.img4.url }}" data-zoom-image="assets/images/product-image/zoom/5.jpg" alt="" />
+            </div>
+            {% endif %}
+
+          </div>
+          <div id="gallery" class="product-dec-slider-2">
+
+            {% if apps.img %}
+            <div class="single-slide-item">
+              <img class="img-responsive" data-image="{{ apps.img.url }}" data-zoom-image="{{ apps.img.url }}" src="{{ apps.img.url }}" alt="" />
+            </div>
+            {% endif %}
+
+            {% if apps.img1 %}
+            <div class="single-slide-item">
+              <img class="img-responsive" data-image="{{ apps.img1.url }}" data-zoom-image="{{ apps.img1.url }}" src="{{ apps.img1.url }}" alt="" />
+            </div>
+            {% endif %}
+
+            {% if apps.img2 %}
+            <div class="single-slide-item">
+              <img class="img-responsive" data-image="{{ apps.img2.url }}" data-zoom-image="{{ apps.img2.url }}" src="{{ apps.img2.url }}" alt="" />
+            </div>
+            {% endif %}
+
+            {% if apps.img3 %}
+            <div class="single-slide-item">
+              <img class="img-responsive" data-image="{{ apps.img3.url }}" data-zoom-image="{{ apps.img3.url }}" src="{{ apps.img3.url }}" alt="" />
+            </div>
+            {% endif %}
+
+            {% if apps.img4 %}
+            <div class="single-slide-item">
+              <img class="img-responsive" data-image="{{ apps.img4.url }}" data-zoom-image="{{ apps.img4.url }}" src="{{ apps.img4.url }}" alt="" />
+            </div>
+            {% endif %}
+
+          </div>
+        </div>
+      </div>
+      <div class="col-xl-6 col-lg-6 col-md-12">
+        <div class="product-details-content">
+          <p class="reference">Reference:<span> {{ apps.reference  }}</span></p>
+          <h2>{{ apps.title }}</h2>
+          <!-- <div class="pro-details-rating-wrap">
+            <div class="rating-product">
+              <i class="ion-android-star"></i>
+              <i class="ion-android-star"></i>
+              <i class="ion-android-star"></i>
+              <i class="ion-android-star"></i>
+              <i class="ion-android-star"></i>
+            </div>
+            <span class="read-review"><a class="reviews" href="#">Read reviews (1)</a></span>
+          </div> -->
+          <!-- <div class="pricing-meta">
+            <ul>
+              <li class="old-price">$23.90</li>
+              <li class="cuttent-price">$21.51</li>
+              <li class="discount-flag">save 10%</li>
+            </ul>
+          </div> -->
+          <div class="pro-details-list">
+            {{ apps.short | safe }}
+          </div>
+          <!-- <div class="pro-details-quality mt-0px">
+                <div class="cart-plus-minus">
+                  <input
+                    class="cart-plus-minus-box"
+                    type="text"
+                    name="qtybutton"
+                    value="1"
+                  />
+                </div>    
+              </div> -->
+
+          <div class="pro-details-social-info">
+            <span>Share</span>
+            <div class="social-info">
+              <ul>
+                <li>
+                  <a title="Facebook" href=""><i class="ion-social-facebook"></i></a>
+                </li>
+                <li>
+                  <a title="Twitter" href="#"><i class="ion-social-twitter"></i></a>
+                </li>
+                <li>
+                  <a title="Google+" href="#"><i class="ion-social-google"></i></a>
+                </li>
+                <li>
+                  <a title="Instagram" href="#"><i class="ion-social-instagram"></i></a>
+                </li>
+              </ul>
+            </div>
+          </div>
+          <div class="pro-details-policy">
+            {% if apps.download %}
+            <a href="{{ apps.download.url }}" class="btn btn-dark">Download Datasheet</a>
+            {% endif %}
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+<!-- Shop details Area End -->
+<!-- product details description area start -->
+<div class="description-review-area mb-50px bg-light-gray-3 ptb-50px">
+  <div class="container">
+    <div class="description-review-wrapper">
+      <div class="description-review-topbar nav">
+        <a data-bs-toggle="tab" href="#des-details1">Description</a>
+        <a class="active" data-bs-toggle="tab" href="#des-details2">Product Details</a>
+        <a data-bs-toggle="tab" href="#des-details3">Request Information</a>
+      </div>
+      <div class="tab-content description-review-bottom">
+        <div id="des-details2" class="tab-pane active">
+          <div class="product-anotherinfo-wrapper">
+
+
+           {{ apps.details | safe }}
+
+
+          </div>
+        </div>
+        <div id="des-details1" class="tab-pane">
+          <div class="product-description-wrapper">
+            {{ apps.description | safe }}
+          </div>
+        </div>
+        <div id="des-details3" class="tab-pane">
+          <div class="row justify-content-center">
+
+            <div class="col-lg-12">
+              <div class="ratting-form-wrapper pl-50">
+                <div class="ratting-form">
+                  <form method="post" action="#">
+                    {% csrf_token %}
+                    <div class="row">
+
+                      <div class="col-md-6">
+                        <div class="rating-form-style mb-10">
+                          <input placeholder="Name" name="name" type="text" />
+                        </div>
+                      </div>
+                      <div class="col-md-6">
+                        <div class="rating-form-style mb-10">
+                          <input placeholder="Email" name="email" type="email" />
+                        </div>
+                      </div>
+                      <div class="col-md-6">
+                        <div class="rating-form-style mb-10">
+                          <input placeholder="Your Company" name="company" type="text" />
+                        </div>
+                      </div>
+                      <div class="col-md-6">
+                        <div class="rating-form-style mb-10">
+                          <input placeholder="Your Country" name="country" type="text" />
+                        </div>
+                      </div>
+                      <div class="col-md-6">
+                        <div class="rating-form-style mb-10">
+                          <input placeholder="State" name="state" type="text" />
+                        </div>
+                      </div>
+                      <div class="col-md-6">
+                        <div class="rating-form-style mb-10">
+                          <input placeholder="City" name="city" type="text" />
+                        </div>
+                      </div>
+                      <div class="col-md-12">
+                        <div class="rating-form-style form-submit">
+                          <textarea name="msg" placeholder="Message"></textarea>
+                          <input type="submit" value="Submit" />
+                        </div>
+                      </div>
+
+                    </div>
+                  </form>
+                </div>
+              </div>
+            </div>
+
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<!-- product details description area end -->
+
+<!-- <?php include 'footer.php'; ?> -->
+
+{% endblock %}

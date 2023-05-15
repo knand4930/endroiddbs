@@ -1,0 +1,79 @@
+{% extends 'master.html' %}
+{% load social_share %}
+{% block content %}
+
+
+<!-- <?php include 'header.php'; ?> -->
+<div class="breadcrumb-area">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-12">
+                <div class="breadcrumb-content">
+                    <ul class="nav">
+                        <li><a href="/">Home</a></li>
+                        <li>Marketing</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="container py-5">
+    <div class="row">
+
+        {% for i in page_obj.object_list %}
+        <div class="col-lg-4 col-md-4 mt-4">
+            <div class="p-2">
+                <img src="{{ i.img.url }}" class="rounded-3 shadow-sm" width="100%" height="420px" alt="{{ i.name }}">
+                <div class="text-center py-2">{{ i.name }}</div>
+                <div class="d-flex justify-content-between px-2">
+                <div class="fs-5" style="cursor: pointer;"><a href="{{ i.img.url }}" download="download">Download</a></div>
+                <div class="">
+                <div class="social-info">
+                      <ul>
+                        <li>{% post_to_facebook object_or_url "<i class='ion-social-facebook fs-5 mx-2'></i>" %}</li>
+				<li>{% post_to_twitter "New Gallery: {{p.title}}. Check it out!" object_or_url "<i class='ion-social-twitter fs-5 mx-2'></i>" %}</li>
+				<li>{% post_to_linkedin object_or_url "<i class='ion-social-linkedin fs-5 mx-2'></i>" %}</li>
+                       
+                      </ul>
+                    </div>
+                </div>
+                </div>
+            </div>
+        </div>
+        {% endfor %}
+
+                    <!--  Pagination Area Start -->
+                    <div class="pro-pagination-style text-center mtb-50px">
+                        <ul>
+                            <li>
+                                 {%if page_obj.has_previous %}
+                                <a class="prev" href="?page={{page_obj.previous_page_number}}"><i class="ion-ios-arrow-left"></i></a>
+                                {% endif %}
+                            </li>
+                            {% for n in page_obj.paginator.page_range %}
+                                        {% if page_obj.number == n %}
+                            <li>
+                                <span class="active">{{ n }}<span class="sr-only"></span></span>
+                            </li>
+                             {% elif n > page_obj.number|add:'-3' and n < page_obj.number|add:'3' %}
+                            <li>
+                                <a href="?page={{ n }}">{{ n }}</a>
+                            </li>
+                              {% endif %}
+                             {% endfor %}
+
+                            <li>
+                                {%if page_obj.has_next %}
+                                <a class="next" href="?page={{page_obj.next_page_number}}"><i class="ion-ios-arrow-right"></i></a>
+                                {% endif %}
+                            </li>
+                        </ul>
+                    </div>
+                    <!--  Pagination Area End -->
+    </div>
+</div>
+<!-- <?php include 'footer.php'; ?> -->
+
+{% endblock %}

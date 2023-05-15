@@ -1,0 +1,489 @@
+<!DOCTYPE html>
+<html class="no-js" lang="en">
+{% load static %}
+{% load embed_video_tags %}
+<head>
+    <meta charset="utf-8" />
+    <meta http-equiv="x-ua-compatible" content="ie=edge" />
+    <title>Endroid</title>
+    <meta name="robots" content="noindex, follow" />
+    <meta name="description" content="" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
+    <meta property="og:image" content="http://example.com/ogp.jpg" />
+
+    <!-- Favicon -->
+    <link rel="shortcut icon" type="image/x-icon" href="assets/images/favicon/favicon.png" />
+    <!-- Google Fonts -->
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Muli:ital,wght@0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&amp;display=swap" type="text/css" media="all" />
+    <!-- icons bootstrap -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.2/font/bootstrap-icons.css">
+    <!-- CSS
+  ============================================ -->
+
+    <!-- Vendor CSS (Bootstrap & Icon Font) -->
+    <link rel="stylesheet" href="{% static 'assets/css/vendor/bootstrap.min.css'  %}" />
+    <link rel="stylesheet" href="{% static 'assets/css/vendor/ionicons.min.css'  %}" />
+    <link rel="stylesheet" href="{% static 'assets/css/vendor/linearicon.css'  %}" />
+    <link rel="stylesheet" href="{% static 'assets/css/vendor/font-awesome.min.css'  %}" />
+
+    <!-- Plugins CSS (All Plugins Files) -->
+    <link rel="stylesheet" href="{% static 'assets/css/plugins/animate.css'  %}" />
+    <link rel="stylesheet" href="{% static 'assets/css/plugins/jquery-ui.min.css'  %}" />
+    <link rel="stylesheet" href="{% static 'assets/css/plugins/slick.css'  %}" />
+
+    <!-- Main Style CSS -->
+    <link rel="stylesheet" href="{% static 'assets/css/style.css'  %}" />
+    <!-- BOOTSTRAP  ICONS -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.2/font/bootstrap-icons.css">
+</head>
+
+<body>
+    <!-- Header Section Start From Here -->
+    <header class="header-wrapper">
+        <!-- Header Nav Start -->
+        <div class="header-nav">
+            <div class="container-fluid">
+                <div class="header-nav-wrapper d-md-flex d-sm-flex d-xl-flex d-lg-flex justify-content-between">
+                    <div class="header-static-nav">
+                        <a href="mailto:info@digiteksystem.com">info@digiteksystem.com</a>
+                    </div>
+                    <div class="header-menu-nav">
+                        <ul class="menu-nav">
+                            <li><a href="{% url 'partner' %}" class="text-dark"> <img src="{% static 'assets/icon/agreement.png' %}" alt="" class="" height="25px" width="auto"> Become a Partner</a></li>
+                            <li><a href="{% url 'career' %}" class="text-dark"><img src="{% static 'assets/icon/career-path.png' %}" alt="" class="" height="25px" width="auto"> Career</a></li>
+
+                            {% if user.is_status %}
+                            <li><a href="{% url 'logout_attempt' %}" class="text-dark">{{ request.user.first_name }}</a></li>
+                            {% else %}
+                            <li><a href="{% url 'userlogin' %}" class="text-dark">Login</a></li>
+                            {% endif %}
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+      
+        <div class="header-menu bg-white sticky-nav d-lg-block d-none padding-0px">
+            <div class="container-fluid">
+                <div class="row">
+                    <div class="col-lg-2">
+                        <div class="logo align-self-center py-2">
+                            <a href="/"><img class="img-responsive" src="{% static 'assets/images/logo/logo.png' %}" alt="logo.jpg" /></a>
+                        </div>
+                    </div>
+                    <div class="col-lg-10">
+                        <div class="header-horizontal-menu">
+                            <ul class="menu-content">
+                                <li><a href="/">Home</a></li>
+                                <li><a href="{% url 'about' %}">About us</a></li>
+                                <li class="menu-dropdown">
+                                    <a href="#">Product<i class="ion-ios-arrow-down"></i></a>
+                                    <ul class="main-sub-menu">
+
+
+                                        {% for i in cat %}
+					{% if i.name %}
+                                        <li class="menu-dropdown position-static">
+                                            <a href="{% url 'category' i.slug %}">{{ i.name }}</a>
+                                            <ul class="main-sub-menu main-sub-menu-2">
+
+                                                {% for c in i.subcategory_set.all %}
+
+                                                <li>
+                                                    <a href="{% url 'sub_category' c.slug %}">{{ c.name }}</a>
+                                                    <ul class="main-sub-menu main-sub-menu-2 sub-sub-menu">
+                                                        {% for m in c.microcategory_set.all %}
+                                                        <li>
+                                                            <a href="{% url 'micro_category' m.slug %}">{{ m.name }}</a>
+                                                        </li>
+                                                        {% endfor %}
+
+
+                                                    </ul>
+                                                </li>
+                                                {% endfor %}
+
+                                            </ul>
+                                        </li>
+					{% endif %}
+                                        {% endfor %}
+
+
+
+                                    </ul>
+                                </li>
+                                <li><a href="{% url 'marketing' %}">Marketing</a></li>
+
+                                <li><a href="{% url 'support' %}">support</a></li>
+                                <li><a href="{% url 'application' %}">Application</a></li>
+                                <li><a href="{% url 'videogallery' %}">video Gallery</a></li>
+                                <li><a href="{% url 'photogallery' %}">Photo Gallery</a></li>
+				 <li><a href="{% url 'waste_management' %}">E Waste Management</a></li>
+                                <li><a href="{% url 'contact' %}">contact Us</a></li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+                <!-- row -->
+            </div>
+            <!-- container -->
+        </div>
+        <!-- header menu -->
+    </header>
+    <!-- Header Section End Here -->
+
+    <!-- Mobile Header Section Start -->
+    <div class="mobile-header d-lg-none sticky-nav bg-white ptb-20px">
+        <div class="container">
+            <div class="row align-items-center">
+                <!-- Header Logo Start -->
+                <div class="col">
+                    <div class="header-logo">
+                        <a href="/"><img class="img-responsive" src="{% static 'assets/images/logo/logo.png' %}" alt="logo.jpg" /></a>
+                    </div>
+                </div>
+                <!-- Header Logo End -->
+
+                <!-- Header Tools Start -->
+                <div class="col-auto">
+                    <div class="header-tools justify-content-end">
+                        <div class="mobile-menu-toggle">
+                            <a href="#offcanvas-mobile-menu" class="offcanvas-toggle">
+                                <svg viewBox="0 0 800 600">
+                                    <path d="M300,220 C300,220 520,220 540,220 C740,220 640,540 520,420 C440,340 300,200 300,200" id="top"></path>
+                                    <path d="M300,320 L540,320" id="middle"></path>
+                                    <path d="M300,210 C300,210 520,210 540,210 C740,210 640,530 520,410 C440,330 300,190 300,190" id="bottom" transform="translate(480, 320) scale(1, -1) translate(-480, -318) "></path>
+                                </svg>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+                <!-- Header Tools End -->
+            </div>
+        </div>
+    </div>
+
+    <!-- Search Category Start -->
+
+    <!-- Search Category End -->
+
+    <!-- Mobile Header Section End -->
+
+
+    <!-- OffCanvas Search Start -->
+    <div id="offcanvas-mobile-menu" class="offcanvas offcanvas-mobile-menu">
+        <div class="inner customScroll">
+            <div class="head">
+                <span class="title">&nbsp;</span>
+                <button class="offcanvas-close">×</button>
+            </div>
+
+            <div class="offcanvas-menu">
+              <ul class="menu-content">
+                <li><a href="/">Home</a></li>
+                <li><a href="{% url 'about' %}">About us</a></li>
+                <li class="menu-dropdown">
+                    <a href="#">Product<i class="ion-ios-arrow-down"></i></a>
+                    <ul class="main-sub-menu">
+
+
+                        {% for i in cat %}
+                        <li class="menu-dropdown position-static">
+                            <a href="{% url 'category' i.slug %}">{{ i.name }}</a>
+                            <ul class="main-sub-menu main-sub-menu-2">
+
+                                {% for c in i.subcategory_set.all %}
+
+                                <li>
+                                    <a href="{% url 'sub_category' c.slug %}">{{ c.name }}</a>
+                                    <ul class="main-sub-menu main-sub-menu-2 sub-sub-menu">
+                                        {% for m in c.microcategory_set.all %}
+                                        <li>
+                                            <a href="{% url 'micro_category' m.slug %}">{{ m.name }}</a>
+                                        </li>
+                                        {% endfor %}
+
+
+                                    </ul>
+                                </li>
+                                {% endfor %}
+
+                            </ul>
+                        </li>
+                        {% endfor %}
+
+
+
+                    </ul>
+                </li>
+                <li><a href="{% url 'marketing' %}">Marketing</a></li>
+
+                <li><a href="{% url 'support' %}">support</a></li>
+                <li><a href="{% url 'application' %}">Application</a></li>
+                <li><a href="{% url 'videogallery' %}">video Gallery</a></li>
+                <li><a href="{% url 'photogallery' %}">Photo Gallery</a></li>
+                <li><a href="{% url 'contact' %}">contact Us</a></li>
+            </ul>
+            </div>
+            <!-- OffCanvas Menu End -->
+           
+        </div>
+    </div>
+    <!-- OffCanvas Search End -->
+        <style>
+         .sub-sub-menu{
+            display: none;
+         }
+         .main-sub-menu-2 li:hover .sub-sub-menu{
+            display: block;
+         }
+        </style>
+    <div class="offcanvas-overlay"></div>
+
+    {% block content %}
+
+
+
+    {% endblock %}
+
+
+<!-- News letter area -->
+<div class="news-letter-area">
+  <div class="container">
+    <div class="row">
+      <div class="col-md-12 col-lg-4 mb-md-30px mb-lm-30px">
+        <div class="title-newsletter">
+          <h2>Sign Up For Newsletters</h2>
+          <p class="des">
+            Be the First to Know. Sign up for newsletter today !
+          </p>
+        </div>
+      </div>
+      <div class="col-md-12 col-lg-8">
+        <div id="mc_embed_signup" class="subscribe-form">
+          <form id="mc-embedded-subscribe-form" class="validate" novalidate="" target="_blank" name="mc-embedded-subscribe-form" method="post" action="http://devitems.us11.list-manage.com/subscribe/post?u=6bbb9b6f5827bd842d9640c82&amp;id=05d85f18ef">
+            <div id="mc_embed_signup_scroll" class="mc-form">
+              <input class="email" type="email" required="" placeholder="Enter your email here.." name="EMAIL" value="" />
+              <div class="mc-news" aria-hidden="true">
+                <input type="text" value="" tabindex="-1" name="b_6bbb9b6f5827bd842d9640c82_05d85f18ef" />
+              </div>
+              <div class="clear">
+                <input id="mc-embedded-subscribe" class="button" type="submit" name="subscribe" value="Sign Up" />
+              </div>
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<!-- News letter area  End -->
+
+<!-- Footer Area Start -->
+<div class="footer-area">
+  <div class="footer-container">
+    <div class="footer-top">
+      <div class="container">
+        <div class="row">
+          <div class="col-md-6 col-lg-4 mb-md-30px mb-lm-30px">
+            <div class="single-wedge">
+              <div class="footer-logo">
+                <div class="logo align-self-center">
+                  <a href="/"><img class="img-responsive" src="{% static 'assets/images/logo/logo.png' %}" alt="logo.jpg" /></a>
+                </div>
+                 <div class="mt-4">
+                 <p>Endroid is a modern aged icon for security and safety. It assures the safe and secured environment for the users which ultimately results in peaceful mind. Our Smart solutions and artificial intelligence concepts provides the complete solution regarding the security and safety of our customers.</p>
+                <p>With our cutting edge technology and deep R & D We are able to provide security products that are not only efficient but have pocket friendly prices too</p>
+                 </div>
+              </div>
+            </div>
+          </div>
+          <div class="col-md-6 col-lg-3 col-sm-6 mb-md-30px mb-lm-30px">
+            <div class="single-wedge">
+              <h4 class="footer-herading">Company</h4>
+              <div class="footer-links">
+                <ul>
+                  <li><a href="{% url 'support' %}">Support</a></li>
+                  <li><a href="{% url 'application' %}">Application</a></li>
+                  <li><a href="{% url 'partner' %}">Become a Partner</a></li>
+                  <li><a href="{% url 'about' %}">About Us</a></li>
+                  <li><a href="{% url 'contact' %}">Contact Us</a></li>
+                  <li><a href="{% url 'hiring' %}">We are hiring</a></li>
+                  <li><a href="{% url 'ssl' %}">Ssl Certificate</a></li>
+                  <li><a href="#">Term and Condition</a></li>
+                  <li><a href="{% url 'privacy' %}">Privacy policy</a></li>
+                </ul>
+              </div>
+            </div>
+          </div>
+          <div class="col-md-6 col-lg-3 col-sm-6 mb-sm-30px mb-lm-30px">
+            <div class="single-wedge">
+              <h4 class="footer-herading">Category</h4>
+              <div class="footer-links">
+                <ul>
+                    {% for m in cat %}
+                  <li><a href="{% url 'category' m.slug %}">{{ m.name }}</a></li>
+                    {% endfor %}
+
+                </ul>
+              </div>
+            </div>
+          </div>
+          <div class="col-md-6 col-lg-2 col-sm-6 mb-sm-30px mb-lm-30px">
+            <div class="single-wedge">
+              <h4 class="footer-herading">Media</h4>
+              <div class="footer-links">
+                <ul>
+                  <li><a href="{% url 'marketing' %}">marketing</a></li>
+                  <li><a href="{% url 'videogallery' %}">Video gallery</a></li>
+                  <li><a href="{% url 'photogallery' %}">Photo gallery</a></li>
+                  <li><a href="{% url 'waste_management' %}">E Waste Management</a></li>
+
+                </ul>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="row mt-4">
+          <hr>
+          <div class="col-lg-4 my-3">
+          <h6>Address</h6>
+              <p class="add">
+                <span class="address fw-bold">USA Office</span>:- <br> <span class="text-danger fw-bold">DBS SECURITY SYSTEM PVT LTD</span> <br> 1820 Avenue M#468 Brooklyn,NY 11230 USA <br>
+                <span class="email">Email:</span>
+                <a href="mailto:info@digiteksystem.com">info@digiteksystem.com</a>
+              </p>
+          </div>
+          <div class="col-lg-4 my-2">
+            <p class="add">
+              <span class="address fw-bold">Corporate Office:-</span> <br> <span class="text-danger fw-bold">DBS SECURITY SYSTEM PVT LTD </span><br> 12/2 Main Mathura Road, Opp. Pillar No 75,
+              Near Sarai Metro Station, Sector – 37,
+              Faridabad, Haryana , India Pin Code-121003 <br>
+              <span class="email">Email:</span><a href="mailto:sales@dbsindia.in">sales@dbsindia.in</a>
+              <br>
+              <span class="phone">Call Us:</span> ‎0129-4608945
+            </p>
+          </div>
+          <div class="col-lg-4 my-2">
+            <p class="add">
+              <span class="address fw-bold">Service center:-</span> <br> <span class="text-danger fw-bold">DBS SECURITY SYSTEM PVT LTD </span><br> 20B/82B GF, Opp. Sant Nirankari Public School,
+              Tilak Nagar New Delhi, India Pin Code-110018 <br>
+              <span class="email">Email:</span> <a href="mailto:support@dbsindia.in">support@dbsindia.in</a><br>
+              <span class="phone">Call Us:</span> 9136533309/9136533304 (customer care)
+            </p>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="footer-center">
+      <div class="container">
+        <div class="row justify-content-between">
+          <div class="col-md-5">
+            <div class="footer-social-icon d-flex">
+              <div class="heading-info">Follow Us:</div>
+              <div class="social-icon">
+                <ul>
+                  <li class="facebook">
+                    <a href="#"><i class="ion-social-facebook"></i></a>
+                  </li>
+                  <li class="twitter">
+                    <a href="#"><i class="ion-social-twitter"></i></a>
+                  </li>
+                  <li class="google">
+                    <a href="#"><i class="ion-social-google"></i></a>
+                  </li>
+                  <li class="youtube">
+                    <a href="#"><i class="ion-social-youtube"></i></a>
+                  </li>
+                  <li class="instagram">
+                    <a href="#"><i class="ion-social-instagram"></i></a>
+                  </li>
+                </ul>
+              </div>
+            </div>
+          </div>
+          <div class="col-md-5">
+            <p class="copy-text mt-2">
+              Copyright © <a href="http://digiteksystem.com/"> endroid</a>.
+              All Rights Reserved
+            </p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="pdf">
+
+    {% for p in pdf %}
+    {% if forloop.counter == 1 %}
+  <div class="my-1">
+    <a href="{{ p.pdf.url }}" target="_blank
+        " alt="logo.jpg"><i class="bi bi-file-earmark-pdf-fill text-danger fs-1"></i></a>
+    <div style="font-size: smaller;">catalogue</div>
+  </div>
+    {% endif %}
+    {% endfor %}
+  <div class="">
+  <a href="https://wa.me/+919136533301" target="_blank"><img src="{% static 'assets/whatsapp.png' %}" class="rounded" width="auto" height="45px" alt=""></a>
+  </div>
+</div>
+<div class="warrant">
+
+  <p class="">
+      <a href="" class="text-danger"></a>
+      <div class="p-2">
+        <img src="{% static 'assets/warrantycheck.jpg'  %}" class="rounded" width="auto" height="45px" alt="">
+        <div style="font-size: smaller;">Online <br> warranty <br> Check</div>
+      </div>
+  </p>
+
+</div>
+<div>
+  <div class="p-2 bg-white shadow-sm rounded-circle text-center" style="width:40px; height:40px; display:flex; justify-content:center;align-items:center">
+    <div>
+      <h4>{{ visit }}</h4>
+    </div>
+  </div>
+  <div style="font-size: smaller;" class="px-2">total visitors</div>
+</div>
+<style>
+  .pdf {
+    position: fixed;
+    bottom:100px;
+    right: 10px;
+  }
+
+  .warrant {
+    font-weight: bold;
+    position: fixed;
+    bottom: 40px;
+    left: 0px;
+  }
+</style>
+<!-- Footer Area End -->
+<!-- Modal -->
+
+<!-- Modal end -->
+<!-- JS
+============================================ -->
+
+<!-- Vendors JS -->
+<script src="{% static 'assets/js/vendor/jquery-3.6.0.min.js' %}"></script>
+<script src="{% static 'assets/js/vendor/bootstrap.bundle.min.js' %}"></script>
+<script src="{% static 'assets/js/vendor/jquery-migrate-3.3.2.min.js' %}"></script>
+<script src="{% static 'assets/js/vendor/modernizr-3.11.2.min.js' %}"></script>
+
+<!-- Plugins JS -->
+<script src="{% static 'assets/js/plugins/jquery-ui.min.js' %}"></script>
+<script src="{% static 'assets/js/plugins/slick.js' %}"></script>
+<script src="{% static 'assets/js/plugins/countdown.js' %}"></script>
+<script src="{% static 'assets/js/plugins/scrollup.js' %}"></script>
+<script src="{% static 'assets/js/plugins/elevateZoom.js' %}"></script>
+
+<!-- Main Activation JS -->
+<script src="{% static 'assets/js/main.js' %}"></script>
+</body>
+
+</html>

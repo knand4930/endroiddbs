@@ -1,0 +1,106 @@
+{% extends 'adminmaster.html' %}
+
+{% block content %}
+
+
+
+
+  <!-- Content Wrapper. Contains page content -->
+  <div class="content-wrapper">
+    <!-- Content Header (Page header) -->
+    <section class="content-header">
+      <div class="container-fluid">
+        <div class="row mb-2">
+          <div class="col-sm-6">
+            <h1>Edit User Profile</h1>
+          </div>
+          <div class="col-sm-6">
+            <ol class="breadcrumb float-sm-right">
+              <li class="breadcrumb-item"><a href="{% url 'adminpanel' %}">Dashboard</a></li>
+              <li class="breadcrumb-item active">Edit User Profile</li>
+            </ol>
+          </div>
+        </div>
+      </div><!-- /.container-fluid -->
+    </section>
+
+    <!-- Main content -->
+    <section class="content">
+      <div class="container-fluid">
+        <div class="row">
+          <!-- left column -->
+          <div class="col-md-6">
+            <!-- general form elements -->
+            <div class="card card-primary">
+              <div class="card-header">
+                <h3 class="card-title">Edit User Profile</h3>
+              </div>
+              <!-- /.card-header -->
+              <!-- form start -->
+
+              <hr>
+              <center><h4 style="color:red;"><b>{{ msg }}<b/></h4></center>
+              <form role="form" method="post" enctype="multipart/form-data">
+                {% csrf_token %}
+                <div class="card-body">
+
+                  <div class="form-group">
+                    <label for="exampleInputEmail1">User Name</label>
+                    <input type="text" class="form-control" value="{{ var.username }}" name="username" id="exampleInputName" placeholder="Enter Name" required>
+                  </div>
+
+
+                  <div class="form-group">
+                    <label for="exampleInputEmail1">Full Name</label>
+                    <input type="text" class="form-control" value="{{ var.first_name }}" name="name" id="exampleInputName" placeholder="Enter Name" required>
+                  </div>
+
+
+                  <div class="form-group">
+                    <label for="exampleInputEmail1">Is Support</label>
+                    <input type="text" class="form-control" name="is_support" value="{{ var.is_support }}" id="exampleInputName" placeholder="Enter Support" required>
+                  </div>
+
+
+                   <div class="form-group">
+                    <label for="exampleInputEmail1">Is Status</label>
+                    <input type="text" class="form-control" name="is_status" value="{{ var.is_status }}" id="exampleInputName" placeholder="Enter Status" required>
+                  </div>
+
+
+                 <div class="form-group">
+                    <label for="exampleInputEmail1">Email address</label>
+                    <input type="email" class="form-control" id="exampleInputEmail1" value="{{ var.email }}" name="email" placeholder="Enter email" required>
+                  </div>
+
+<!--
+                   <div class="form-group">
+                    <label for="exampleInputEmail1">Password</label>
+                    <input type="text" class="form-control" id="exampleInputEmail1" value="{{ var.password }}" name="password" placeholder="Enter Password" required>
+                  </div>
+-->
+                </div>
+                <!-- /.card-body -->
+
+                <div class="card-footer">
+                  <button type="submit" class="btn btn-primary">Create Support User</button>
+                </div>
+              </form>
+            </div>
+            <!-- /.card -->
+
+
+          </div>
+          <!--/.col (left) -->
+          <!-- right column -->
+          <!--/.col (right) -->
+        </div>
+        <!-- /.row -->
+      </div><!-- /.container-fluid -->
+    </section>
+    <!-- /.content -->
+  </div>
+  <!-- /.content-wrapper -->
+
+
+{% endblock %}
