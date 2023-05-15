@@ -150,7 +150,6 @@ JAZZMIN_SETTINGS = {
 
 AUTH_USER_MODEL = 'main.User'
 
-
 # settings.py
 
 EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
@@ -158,6 +157,8 @@ EMAIL_HOST = 'smtp.gmail.com'
 EMAIL_PORT = 587
 EMAIL_USE_TLS = True
 EMAIL_HOST_USER = 'dbsindia00@gmail.com'
-EMAIL_HOST_PASSWORD = '#dbsindia123'
+EMAIL_HOST_PASSWORD = 'znzhofqvacaewtuf'
 
-SENDING_EMAIL = ["knand4930@gmail.com"]
+SENDING_EMAIL = ["sales@dbsindia.in"]
+
+SITES_URL = "endroidusa.com"

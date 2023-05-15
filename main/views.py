@@ -69,7 +69,7 @@ def career(request):
         msg = "Your Career Details Has Been Submitted!"
         subject = f"Career Details Person Name: {name} {surname} and Experience: {experience}"
         message = f"Person Name : {name}  {surname}\n Person Experience : {experience} \n Address : {address}" \
-                  f" \n City Name : {city} \n Fields Name : {field}, Resume/CV: {data.cv.url} \n Remarks {remark}"
+                  f" \n City Name : {city} \n Fields Name : {field}, \n Resume/CV: {settings.SITES_URL}{data.cv.url} \n Remarks {remark}"
         from_email = settings.EMAIL_HOST_USER
         recipient_list = settings.SENDING_EMAIL
         send_mail(subject, message, from_email, recipient_list)
