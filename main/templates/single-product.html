@@ -30,8 +30,15 @@
   <div class="container">
     <div class="row">
       <div class="col-xl-6 col-lg-6 col-md-12 content-center" >
+
+
+
         {% if prod.img %}
+        {% if prod.height %}
+         <img class="img-fluid" src="{{ prod.img.url }}" width ="auto" height ="{{ prod.height }}" alt="{{ prod.title }}"/>
+        {% else %}
         <img class="first-img" src="{{ prod.img.url }}" alt="{{ prod.title }}" style="width:300px; height:300px;"/>
+        {% endif %}
         {% endif %}
          </div>
       <div class="col-xl-6 col-lg-6 col-md-12">
@@ -50,27 +57,7 @@
           <h6><span style="font-size:smaller !important;">(INCLUSIVE OF ALL TAXES)</span> </h6>
                 {% else %}
           {% endif%}
-          
-          <!-- <div class="pro-details-social-info">
-            <span>Share</span>
-            <div class="social-info">
-              <ul>
-                <li>
-                  <a title="Facebook" href="#"><i class="ion-social-facebook"></i></a>
-                </li>
-                <li>
-                  <a title="Twitter" href="#"><i class="ion-social-twitter"></i></a>
-                </li>
-                <li>
-                  <a title="Google+" href="#"><i class="ion-social-google"></i></a>
-                </li>
-                <li>
-                  <a title="Instagram" href="#"><i class="ion-social-instagram"></i></a>
-                </li>
-              </ul>
-            </div>
-          </div> -->
-  
+
 	      <div class="pro-details-policy">
             {% if prod.download %}
             <a href="{{ prod.download.url }}" download="download" class="btn btn-dark">Download Datasheet</a>

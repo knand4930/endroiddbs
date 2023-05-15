@@ -52,6 +52,7 @@ class Products(models.Model):
         ('hide', 'hide'),
         ('trending_latest', 'trending_latest')
     )
+
     category = models.ForeignKey(Category, on_delete=models.CASCADE, blank=True, null=True)
     sub_category = models.ForeignKey(SubCategory, on_delete=models.CASCADE, blank=True, null=True)
     micro_category = models.ForeignKey(MicroCategory, on_delete=models.CASCADE, blank=True, null=True)
@@ -62,6 +63,7 @@ class Products(models.Model):
     dealer_price = models.IntegerField(default=0, blank=True, null=True)
     img = models.ImageField(upload_to="product/", blank=True, null=True)
     product_types = models.CharField(max_length=200, blank=True, default='hide', choices=TYPES)
+    height = models.CharField(max_length=200, blank=True, null=True)
     short_description = RichTextField(config_name='awesome_ckeditor')
     description = RichTextField(config_name='awesome_ckeditor')
     details = RichTextField(config_name='awesome_ckeditor')
