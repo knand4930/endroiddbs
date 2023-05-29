@@ -45,7 +45,7 @@
             <div class="container-fluid">
                 <div class="header-nav-wrapper d-md-flex d-sm-flex d-xl-flex d-lg-flex justify-content-between">
                     <div class="header-static-nav">
-                        <a href="mailto:info@digiteksystem.com">info@digiteksystem.com</a>
+                        <a href="mailto:sales@dbsindia.in">sales@dbsindia.in</a>
                     </div>
                     <div class="header-menu-nav">
                         <ul class="menu-nav">
@@ -62,7 +62,91 @@
                 </div>
             </div>
         </div>
-      
+      <!-- new -->
+      <div class="header-menu bg-white sticky-nav d-lg-block d-none padding-0px">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-2">
+                    <div class="logo align-self-center py-2">
+                        <a href="index.php"><img class="img-responsive" src="assets/images/logo/logo.png" alt="logo.jpg" /></a>
+                    </div>
+                </div>
+                <div class="col-lg-10">
+                    <div class="header-horizontal-menu">
+                        <ul class="menu-content">
+                            <li><a href="index.php">Home</a></li>
+                            <li><a href="about.php">About us</a></li>
+                            <li class="menu-dropdown">
+                                <a href="#">Product<i class="ion-ios-arrow-down"></i></a>
+                                <ul class="main-sub-menu">
+                                    <li class="menu-dropdown position-static">
+                                        <a href="#">CCTV<i class="ion-ios-arrow-right"></i></a>
+                                        <ul class="main-sub-menu main-sub-menu-2">
+                                            <li>
+                                                <a href="hd-cctv.php">HD CCTV <i class="ion-ios-arrow-right"></i></a>
+                                                <ul class="main-sub-menu main-sub-menu-2 sub-sub-menu">
+                                                    <li>
+                                                        <a href="hd-cctv.php">HD CCTV</a>
+                                                    </li>
+                                                    <li>
+                                                        <a href="ipc.php">IPC</a>
+                                                    </li>
+
+                                                </ul>
+                                            </li>
+                                            <li>
+                                                <a href="ipc.php">IPC</a>
+                                            </li>
+                                            <li>
+                                                <a href="shop-left-sidebar.php">WIFI / 4G</a>
+                                            </li>
+                                            <li>
+                                                <a href="ipptz.php">PTZ</a>
+                                            </li>
+                                        </ul>
+                                    </li>
+                                    <li>
+                                        <a href="panaromic-camera.php">PANAROMIC CAMERAS</a>
+                                    </li>
+                                    <li>
+                                        <a href="dvr.php">DVR</a>
+                                    </li>
+                                    <li>
+                                        <a href="shop-left-sidebar.php">NVR</a>
+                                    </li>
+                                    <li>
+                                        <a href="time-attendance.php">TIME AND ATTENDANCE</a>
+                                    </li>
+                                    <li>
+                                        <a href="only-access-control.php">DOOR LOCKS</a>
+                                    </li>
+                                    <li>
+                                        <a href="poe-switches.php">POE SWITCHES</a>
+                                    </li>
+                                    <li>
+                                        <a href="led-tv.php">LED TV</a>
+                                    </li>
+                                    <li>
+                                        <a href="accessories.php">ACCESSORIES</a>
+                                    </li>
+                                </ul>
+                            </li>
+                            <li><a href="marketing.php">Marketing</a></li>
+
+                            <li><a href="login.php">support</a></li>
+                            <li><a href="application.php">Application</a></li>
+                            <li><a href="videogallery.php">video Gallery</a></li>
+                            <li><a href="photogallery.php">Photo Gallery</a></li>
+                            <li><a href="contact.php">contact Us</a></li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+            <!-- row -->
+        </div>
+        <!-- container -->
+    </div>
+      <!--  -->
         <div class="header-menu bg-white sticky-nav d-lg-block d-none padding-0px">
             <div class="container-fluid">
                 <div class="row">
@@ -124,11 +208,8 @@
                         </div>
                     </div>
                 </div>
-                <!-- row -->
             </div>
-            <!-- container -->
         </div>
-        <!-- header menu -->
     </header>
     <!-- Header Section End Here -->
 
@@ -136,15 +217,13 @@
     <div class="mobile-header d-lg-none sticky-nav bg-white ptb-20px">
         <div class="container">
             <div class="row align-items-center">
-                <!-- Header Logo Start -->
                 <div class="col">
                     <div class="header-logo">
                         <a href="/"><img class="img-responsive" src="{% static 'assets/images/logo/logo.png' %}" alt="logo.jpg" /></a>
                     </div>
                 </div>
-                <!-- Header Logo End -->
 
-                <!-- Header Tools Start -->
+                <!-- Header  Start -->
                 <div class="col-auto">
                     <div class="header-tools justify-content-end">
                         <div class="mobile-menu-toggle">
@@ -179,7 +258,8 @@
             </div>
 
             <div class="offcanvas-menu">
-              <ul class="menu-content">
+             
+           <!-- <ul class="menu-content">
                 <li><a href="/">Home</a></li>
                 <li><a href="{% url 'about' %}">About us</a></li>
                 <li class="menu-dropdown">
@@ -188,6 +268,7 @@
 
 
                         {% for i in cat %}
+{% if i.name %}
                         <li class="menu-dropdown position-static">
                             <a href="{% url 'category' i.slug %}">{{ i.name }}</a>
                             <ul class="main-sub-menu main-sub-menu-2">
@@ -210,6 +291,7 @@
 
                             </ul>
                         </li>
+{% endif %}
                         {% endfor %}
 
 
@@ -222,14 +304,80 @@
                 <li><a href="{% url 'application' %}">Application</a></li>
                 <li><a href="{% url 'videogallery' %}">video Gallery</a></li>
                 <li><a href="{% url 'photogallery' %}">Photo Gallery</a></li>
+<li><a href="{% url 'waste_management' %}">E Waste Management</a></li>
                 <li><a href="{% url 'contact' %}">contact Us</a></li>
-            </ul>
+            </ul> -->
+            <ul class="menu-content">
+              <li><a href="index.php">Home</a></li>
+              <li><a href="about.php">About us</a></li>
+              <li class="menu-dropdown">
+                  <a href="#">Product<i class="ion-ios-arrow-down"></i></a>
+                  <ul class="main-sub-menu">
+                      <li class="menu-dropdown position-static">
+                          <a href="#">CCTV<i class="ion-ios-arrow-right"></i></a>
+                          <ul class="main-sub-menu main-sub-menu-2">
+                            <a href="#">CCTV HD<i class="ion-ios-arrow-right"></i></a>
+                            <ul class="main-sub-menu main-sub-menu-2">                              
+                                <li>
+                                    <a href="ipc.php">IPC</a>
+                                </li>
+                                <li>
+                                    <a href="shop-left-sidebar.php">WIFI / 4G</a>
+                                </li>
+                                <li>
+                                    <a href="ipptz.php">PTZ</a>
+                                </li>
+                            </ul>
+                              <li>
+                                  <a href="ipc.php">IPC</a>
+                              </li>
+                              <li>
+                                  <a href="shop-left-sidebar.php">WIFI / 4G</a>
+                              </li>
+                              <li>
+                                  <a href="ipptz.php">PTZ</a>
+                              </li>
+                          </ul>
+                      </li>
+                      <hr>
+                      <li>
+                          <a href="panaromic-camera.php">PANAROMIC CAMERAS</a>
+                      </li>
+                      <li>
+                          <a href="dvr.php">DVR</a>
+                      </li>
+                      <li>
+                          <a href="shop-left-sidebar.php">NVR</a>
+                      </li>
+                      <li>
+                          <a href="time-attendance.php">TIME AND ATTENDANCE</a>
+                      </li>
+                      <li>
+                          <a href="only-access-control.php">DOOR LOCKS</a>
+                      </li>
+                      <li>
+                          <a href="poe-switches.php">POE SWITCHES</a>
+                      </li>
+                      <li>
+                          <a href="led-tv.php">LED TV</a>
+                      </li>
+                      <li>
+                          <a href="accessories.php">ACCESSORIES</a>
+                      </li>
+                  </ul>
+              </li>
+              <li><a href="marketing.php">Marketing</a></li>
+
+              <li><a href="login.php">support</a></li>
+              <li><a href="application.php">Application</a></li>
+              <li><a href="videogallery.php">video Gallery</a></li>
+              <li><a href="photogallery.php">Photo Gallery</a></li>
+              <li><a href="contact.php">contact Us</a></li>
+          </ul>
             </div>
-            <!-- OffCanvas Menu End -->
            
         </div>
     </div>
-    <!-- OffCanvas Search End -->
         <style>
          .sub-sub-menu{
             display: none;
@@ -351,7 +499,7 @@
               <p class="add">
                 <span class="address fw-bold">USA Office</span>:- <br> <span class="text-danger fw-bold">DBS SECURITY SYSTEM PVT LTD</span> <br> 1820 Avenue M#468 Brooklyn,NY 11230 USA <br>
                 <span class="email">Email:</span>
-                <a href="mailto:info@digiteksystem.com">info@digiteksystem.com</a>
+                <a href="mailto:usa@dbsindia.in">usa@dbsindia.in</a>
               </p>
           </div>
           <div class="col-lg-4 my-2">
@@ -384,19 +532,14 @@
               <div class="social-icon">
                 <ul>
                   <li class="facebook">
-                    <a href="#"><i class="ion-social-facebook"></i></a>
+                    <a href="https://www.facebook.com/dbs.india.9?mibextid=ZbWKwL" target="_blank"><i class="ion-social-facebook"></i></a>
                   </li>
-                  <li class="twitter">
-                    <a href="#"><i class="ion-social-twitter"></i></a>
-                  </li>
-                  <li class="google">
-                    <a href="#"><i class="ion-social-google"></i></a>
-                  </li>
+                 
                   <li class="youtube">
-                    <a href="#"><i class="ion-social-youtube"></i></a>
+                    <a href="https://www.youtube.com/@vipinpahwa4815"><i class="ion-social-youtube" target="_blank"></i></a>
                   </li>
                   <li class="instagram">
-                    <a href="#"><i class="ion-social-instagram"></i></a>
+                    <a href="https://www.instagram.com/dbs.india/?igshid=NTA5ZTk1NTc%3D"><i class="ion-social-instagram" target="_blank"></i></a>
                   </li>
                 </ul>
               </div>
@@ -460,7 +603,7 @@
   .warrant {
     font-weight: bold;
     position: fixed;
-    bottom: 40px;
+    bottom: 50px;
     left: 0px;
   }
 </style>

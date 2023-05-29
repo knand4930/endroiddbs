@@ -261,6 +261,7 @@ $(function() {
         nextArrow: '<span class="next"><i class="ion-ios-arrow-right"></i></span>',
         speed: 800,
         cssEase: 'linear',
+        autoplay:true,
         dots: false,
         responsive: [{
                 breakpoint: 992,
@@ -287,7 +288,44 @@ $(function() {
     });
     /*------------------------------
               Arrivel Slider
+              
       -----------------------------------*/
+    //   
+    $('#arrival').slick({
+        infinite: true,
+        slidesToShow: 2,
+        arrows: true,
+        slidesToScroll: 1,
+        prevArrow: '<span class="prev"><i class="ion-ios-arrow-left"></i></span>',
+        nextArrow: '<span class="next"><i class="ion-ios-arrow-right"></i></span>',
+        speed: 800,
+        cssEase: 'linear',
+        autoplay:true,
+        dots: false,
+        responsive: [{
+                breakpoint: 992,
+                Settings: {
+                    slidesToShow: 1,
+                    slidesToScroll: 1
+                }
+            },
+            {
+                breakpoint: 767,
+                Settings: {
+                    slidesToShow: 1,
+                    slidesToScroll: 1
+                }
+            },
+            {
+                breakpoint: 479,
+                Settings: {
+                    slidesToShow: 1,
+                    slidesToScroll: 1
+                }
+            }
+        ]
+    });
+    // 
 
     $('.arrival-slider-wrapper').slick({
         infinite: true,
@@ -295,6 +333,7 @@ $(function() {
         arrows: true,
         loop: true,
         slidesToScroll: 1,
+        autoplay :true,
         prevArrow: '<span class="prev"><i class="ion-ios-arrow-left"></i></span>',
         nextArrow: '<span class="next"><i class="ion-ios-arrow-right"></i></span>',
         speed: 800,

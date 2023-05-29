@@ -8,9 +8,9 @@
 
 <!-- <?php include 'header.php'; ?> -->
 <!-- Slider Start -->
-<div class="slider-area">
+<!-- <div class="slider-area">
   <div class="hero-slider-wrapper">
-    <!-- Single Slider  -->
+    Single Slider 
     {% for s in slider %}
     {% if s.img %}
     <div class="single-slide slider-height-1 bg-img d-flex" data-bg-image="{{ s.img.url }}">
@@ -22,13 +22,43 @@
             {{ s.name }}
           </h1>
           <p class="animated color-gray">{{ s.short }}</p>
-          <!-- <a href="shop-4-column.php" class="shop-btn animated">SHOP NOW</a> -->
         </div>
       </div>
     </div>
-    <!-- Single Slider  -->
+    Single Slider 
     {% endfor %}
   </div>
+</div> -->
+<div id="carouselExampleCaptions" class="carousel slide" data-bs-ride="false">
+  <div class="carousel-indicators">
+    <button type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide-to="0" class="active" aria-current="true" aria-label="Slide 1"></button>
+    <button type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide-to="1" aria-label="Slide 2"></button>
+    <button type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide-to="2" aria-label="Slide 3"></button>
+  </div>
+  <div class="carousel-inner">
+    {% for s in slider %}
+    {% if s.img %}
+    <div class="carousel-item active">
+      <img src="{{ s.img.url }}" class="d-block w-100" alt="...">
+      <div class="carousel-caption d-none d-md-block">
+        {% endif %}
+        <!-- <h5>{{ s.title }}</h5> -->
+        <!-- <p>{{ s.short }}</p> -->
+      </div>
+    </div>
+    {% endfor %}
+
+  
+  
+  </div>
+  <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide="prev">
+    <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+    <span class="visually-hidden">Previous</span>
+  </button>
+  <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide="next">
+    <span class="carousel-control-next-icon" aria-hidden="true"></span>
+    <span class="visually-hidden">Next</span>
+  </button>
 </div>
 <!-- Slider End -->
 
@@ -60,7 +90,7 @@
       <!-- First-Tab -->
       <div id="tab-1" class="tab-pane active fade">
         <!-- Arrivel slider start -->
-        <div class="arrival-slider-wrapper slider-nav-style-1">
+        <div class="arrival-slider-wrapper slider-nav-style-1" id="arrival">
         {% for p in products %}
           {% if p.product_types == 'latest' or p.product_types == 'trending_latest' %}
 	
