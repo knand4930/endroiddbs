@@ -161,4 +161,4 @@ EMAIL_HOST_PASSWORD = 'znzhofqvacaewtuf'
 
 SENDING_EMAIL = ["sales@dbsindia.in"]
 
-SITES_URL = "endroidusa.com"
+SITES_URL = "http://endroidusa.com"

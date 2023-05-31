@@ -36,9 +36,10 @@
                     <div class="">
                         <div class="social-info">
                             <ul>
-                              <li>{% post_to_facebook object_or_url "<i class='ion-social-facebook fs-5 mx-2'></i>" %}</li>
-				<li>{% post_to_twitter "New Gallery: {{p.title}}. Check it out!" object_or_url "<i class='ion-social-twitter fs-5 mx-2'></i>" %}</li>
-				<li>{% post_to_linkedin object_or_url "<i class='ion-social-linkedin fs-5 mx-2'></i>" %}</li>
+                               <li>{% post_to_facebook p.img.url "<i class='ion-social-facebook fs-5 mx-2'></i>" "facebook-link" %}</li>
+				                <li>{% post_to_twitter "New Gallery: {{p.title}}. Check it out!" p.img.url "<i class='ion-social-twitter fs-5 mx-2'></i>" "twitter-link" %}</li>
+
+                                <li>{% post_to_linkedin object_or_url "<i class='ion-social-linkedin fs-5 mx-2'></i>" %}</li>
                                
                             </ul>
                         </div>

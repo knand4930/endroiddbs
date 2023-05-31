@@ -52,29 +52,31 @@ def career(request):
     cat = Category.objects.all()
     mcat = MicroCategory.objects.all()
     pdf = PDF.objects.all()
+    try:
+        if request.method == 'POST':
+            name = request.POST.get('name')
+            surname = request.POST.get('surname')
+            experience = request.POST.get('experience')
+            address = request.POST.get('address')
+            city = request.POST.get('city')
+            field = request.POST.get('field')
+            cv = request.FILES.get('cv')
+            remark = request.POST.get('remark')
 
-    if request.method == 'POST':
-        name = request.POST.get('name')
-        surname = request.POST.get('surname')
-        experience = request.POST.get('experience')
-        address = request.POST.get('address')
-        city = request.POST.get('city')
-        field = request.POST.get('field')
-        cv = request.FILES.get('cv')
-        remark = request.POST.get('remark')
+            data = Career.objects.create(name=name, surname=surname, experience=experience, address=address, city=city,
+                                         field=field, cv=cv, remark=remark)
+            data.save()
+            msg = "Your Career Details Has Been Submitted!"
+            subject = f"Career Details Person Name: {name} {surname} and Experience: {experience}"
+            message = f"Person Name : {name}  {surname}\n Person Experience : {experience} \n Address : {address}" \
+                      f" \n City Name : {city} \n Fields Name : {field}, \n Resume/CV: {settings.SITES_URL}{data.cv.url} \n Remarks {remark}"
+            from_email = settings.EMAIL_HOST_USER
+            recipient_list = settings.SENDING_EMAIL
+            send_mail(subject, message, from_email, recipient_list)
 
-        data = Career.objects.create(name=name, surname=surname, experience=experience, address=address, city=city,
-                                     field=field, cv=cv, remark=remark)
-        data.save()
-        msg = "Your Career Details Has Been Submitted!"
-        subject = f"Career Details Person Name: {name} {surname} and Experience: {experience}"
-        message = f"Person Name : {name}  {surname}\n Person Experience : {experience} \n Address : {address}" \
-                  f" \n City Name : {city} \n Fields Name : {field}, \n Resume/CV: {settings.SITES_URL}{data.cv.url} \n Remarks {remark}"
-        from_email = settings.EMAIL_HOST_USER
-        recipient_list = settings.SENDING_EMAIL
-        send_mail(subject, message, from_email, recipient_list)
-
-        return render(request, 'success.html', {'msg': msg})
+            return render(request, 'success.html', {'msg': msg})
+    except Exception as E:
+        return render(request, 'success.html', {'msg': E})
     return render(request, 'career.html', {'visit': visit, 'cat': cat, 'mcat': mcat, 'pdf': pdf})
 
 
@@ -83,22 +85,24 @@ def contact(request):
     cat = Category.objects.all()
     mcat = MicroCategory.objects.all()
     pdf = PDF.objects.all()
-
-    if request.method == "POST":
-        name = request.POST.get('name')
-        email = request.POST.get('email')
-        sub = request.POST.get('sub')
-        msg = request.POST.get('msg')
-        data = ContactUs.objects.create(name=name, email=email, sub=sub, msg=msg)
-        data.save()
-        msg = "Your contact details has been sent !"
-        subject = f"Contact Details Person Name: {name} and Email: {email}"
-        message = f"Person Name : {name} \n Person Email : {email} \n Subject : {sub}" \
-                  f" \n Messages Details : {msg} \n "
-        from_email = settings.EMAIL_HOST_USER
-        recipient_list = settings.SENDING_EMAIL
-        send_mail(subject, message, from_email, recipient_list)
-        return render(request, 'success.html', {'msg': msg})
+    try:
+        if request.method == "POST":
+            name = request.POST.get('name')
+            email = request.POST.get('email')
+            sub = request.POST.get('sub')
+            msg = request.POST.get('msg')
+            data = ContactUs.objects.create(name=name, email=email, sub=sub, msg=msg)
+            data.save()
+            msg = "Your contact details has been sent !"
+            subject = f"Contact Details Person Name: {name} and Email: {email}"
+            message = f"Person Name : {name} \n Person Email : {email} \n Subject : {sub}" \
+                      f" \n Messages Details : {msg} \n "
+            from_email = settings.EMAIL_HOST_USER
+            recipient_list = settings.SENDING_EMAIL
+            send_mail(subject, message, from_email, recipient_list)
+            return render(request, 'success.html', {'msg': msg})
+    except Exception as E:
+        return render(request, 'success.html', {'msg': E})
     return render(request, 'contact.html', {'visit': visit, 'cat': cat, 'mcat': mcat, 'pdf': pdf})
 
 
@@ -172,51 +176,53 @@ def partner(request):
     cat = Category.objects.all()
     mcat = MicroCategory.objects.all()
     pdf = PDF.objects.all()
+    try:
+        if request.method == 'POST':
+            company = request.POST.get('company')
+            name = request.POST.get('name')
+            email = request.POST.get('email')
+            password = request.POST.get('password')
+            phone = request.POST.get('phone')
+            website = request.POST.get('website')
+            gst = request.POST.get('gst')
+            year_business = request.POST.get('year_business')
+            type_business = request.POST.get('type_business')
+            revenue = request.POST.get('revenue')
+            address = request.POST.get('address')
+            city = request.POST.get('city')
+            state = request.POST.get('state')
+            country = request.POST.get('country')
+            zipcode = request.POST.get('zipcode')
+            sales_employee = request.POST.get('sales_employee')
+            technical_employee = request.POST.get('technical_employee')
+            major_brand = request.POST.get('major_brand')
 
-    if request.method == 'POST':
-        company = request.POST.get('company')
-        name = request.POST.get('name')
-        email = request.POST.get('email')
-        password = request.POST.get('password')
-        phone = request.POST.get('phone')
-        website = request.POST.get('website')
-        gst = request.POST.get('gst')
-        year_business = request.POST.get('year_business')
-        type_business = request.POST.get('type_business')
-        revenue = request.POST.get('revenue')
-        address = request.POST.get('address')
-        city = request.POST.get('city')
-        state = request.POST.get('state')
-        country = request.POST.get('country')
-        zipcode = request.POST.get('zipcode')
-        sales_employee = request.POST.get('sales_employee')
-        technical_employee = request.POST.get('technical_employee')
-        major_brand = request.POST.get('major_brand')
+            user_obj = User.objects.create_user(username=email, email=email, first_name=name, last_name=phone)
+            user_obj.set_password(password)
+            user_obj.save()
 
-        user_obj = User.objects.create_user(username=email, email=email, first_name=name, last_name=phone)
-        user_obj.set_password(password)
-        user_obj.save()
-
-        data = Partner.objects.create(user=user_obj, company=company, name=name, email=email, phone=phone,
-                                      website=website, year_business=year_business
-                                      , type_business=type_business, revenue=revenue, address=address, city=city,
-                                      state=state,
-                                      country=country, zipcode=zipcode, sales_employee=sales_employee,
-                                      technical_employee=technical_employee,
-                                      major_brand=major_brand, gst=gst, password=password)
-        data.save()
-        msg = "Your Registrations Successfully Completed!"
-        subject = f"Partnership Details Company Name: {company} and User Name: {name}"
-        message = f"Person Name : {name} \n Person Email : {email} \n Person Contact Number:{phone} \n" \
-                  f" Person Company Name : {company} \n Person Website Name: {website} \n Gst Details: {gst} \n" \
-                  f"Business Year: {year_business} \n Types of Business: {type_business} \n Revenue: {revenue}" \
-                  f" \n Person Country Name : {country} \n Person State Name: {state} \n Person City Name : {city} \n" \
-                  f"Address : {revenue} \n Zip Code : {zipcode}, \n Sales Employee : {sales_employee}, \n" \
-                  f"Technical Employee : {technical_employee} \n Major Brand Name : {major_brand}"
-        from_email = settings.EMAIL_HOST_USER
-        recipient_list = settings.SENDING_EMAIL
-        send_mail(subject, message, from_email, recipient_list)
-        return render(request, 'success.html', {'msg': msg})
+            data = Partner.objects.create(user=user_obj, company=company, name=name, email=email, phone=phone,
+                                          website=website, year_business=year_business
+                                          , type_business=type_business, revenue=revenue, address=address, city=city,
+                                          state=state,
+                                          country=country, zipcode=zipcode, sales_employee=sales_employee,
+                                          technical_employee=technical_employee,
+                                          major_brand=major_brand, gst=gst, password=password)
+            data.save()
+            msg = "Your Registrations Successfully Completed!"
+            subject = f"Partnership Details Company Name: {company} and User Name: {name}"
+            message = f"Person Name : {name} \n Person Email : {email} \n Person Contact Number:{phone} \n" \
+                      f" Person Company Name : {company} \n Person Website Name: {website} \n Gst Details: {gst} \n" \
+                      f"Business Year: {year_business} \n Types of Business: {type_business} \n Revenue: {revenue}" \
+                      f" \n Person Country Name : {country} \n Person State Name: {state} \n Person City Name : {city} \n" \
+                      f"Address : {revenue} \n Zip Code : {zipcode}, \n Sales Employee : {sales_employee}, \n" \
+                      f"Technical Employee : {technical_employee} \n Major Brand Name : {major_brand}"
+            from_email = settings.EMAIL_HOST_USER
+            recipient_list = settings.SENDING_EMAIL
+            send_mail(subject, message, from_email, recipient_list)
+            return render(request, 'success.html', {'msg': msg})
+    except Exception as E:
+        return render(request, 'success.html', {'msg': E})
     return render(request, 'partner.html', {'visit': visit, 'cat': cat, 'mcat': mcat, 'pdf': pdf})
 
 

@@ -64,80 +64,57 @@
         </div>
       <!-- new -->
       <div class="header-menu bg-white sticky-nav d-lg-block d-none padding-0px">
-        <div class="container">
+        <div class="container-fluid">
             <div class="row">
                 <div class="col-lg-2">
                     <div class="logo align-self-center py-2">
-                        <a href="index.php"><img class="img-responsive" src="assets/images/logo/logo.png" alt="logo.jpg" /></a>
+                        <a href="/"><img class="img-responsive" src="{% static 'assets/images/logo/logo.png' %}" alt="logo.jpg" /></a>
                     </div>
                 </div>
                 <div class="col-lg-10">
                     <div class="header-horizontal-menu">
                         <ul class="menu-content">
-                            <li><a href="index.php">Home</a></li>
-                            <li><a href="about.php">About us</a></li>
+                            <li><a href="/">Home</a></li>
+                            <li><a href="{% url 'about' %}">About us</a></li>
                             <li class="menu-dropdown">
                                 <a href="#">Product<i class="ion-ios-arrow-down"></i></a>
                                 <ul class="main-sub-menu">
+                                    {% for i in cat %}
+                                    {% if i.name %}
                                     <li class="menu-dropdown position-static">
-                                        <a href="#">CCTV<i class="ion-ios-arrow-right"></i></a>
+                                        <a href="{% url 'category' i.slug %}">{{ i.name }}<i class="ion-ios-arrow-right"></i></a>
                                         <ul class="main-sub-menu main-sub-menu-2">
+                                            {% for c in i.subcategory_set.all %}
                                             <li>
-                                                <a href="hd-cctv.php">HD CCTV <i class="ion-ios-arrow-right"></i></a>
+                                                <a href="{% url 'sub_category' c.slug %}">{{ c.name }} <i class="ion-ios-arrow-right"></i></a>
                                                 <ul class="main-sub-menu main-sub-menu-2 sub-sub-menu">
+                                                    {% for m in c.microcategory_set.all %}
                                                     <li>
-                                                        <a href="hd-cctv.php">HD CCTV</a>
+                                                        <a href="{% url 'micro_category' m.slug %}">{{ m.name }}</a>
                                                     </li>
+                                                    {% endfor %}
                                                     <li>
                                                         <a href="ipc.php">IPC</a>
                                                     </li>
 
                                                 </ul>
                                             </li>
-                                            <li>
-                                                <a href="ipc.php">IPC</a>
-                                            </li>
-                                            <li>
-                                                <a href="shop-left-sidebar.php">WIFI / 4G</a>
-                                            </li>
-                                            <li>
-                                                <a href="ipptz.php">PTZ</a>
-                                            </li>
+                                            {% endfor %}
+
                                         </ul>
                                     </li>
-                                    <li>
-                                        <a href="panaromic-camera.php">PANAROMIC CAMERAS</a>
-                                    </li>
-                                    <li>
-                                        <a href="dvr.php">DVR</a>
-                                    </li>
-                                    <li>
-                                        <a href="shop-left-sidebar.php">NVR</a>
-                                    </li>
-                                    <li>
-                                        <a href="time-attendance.php">TIME AND ATTENDANCE</a>
-                                    </li>
-                                    <li>
-                                        <a href="only-access-control.php">DOOR LOCKS</a>
-                                    </li>
-                                    <li>
-                                        <a href="poe-switches.php">POE SWITCHES</a>
-                                    </li>
-                                    <li>
-                                        <a href="led-tv.php">LED TV</a>
-                                    </li>
-                                    <li>
-                                        <a href="accessories.php">ACCESSORIES</a>
-                                    </li>
+                                    {% endif %}
+                                    {% endfor %}
                                 </ul>
                             </li>
-                            <li><a href="marketing.php">Marketing</a></li>
+                            <li><a href="{% url 'marketing' %}">Marketing</a></li>
 
-                            <li><a href="login.php">support</a></li>
-                            <li><a href="application.php">Application</a></li>
-                            <li><a href="videogallery.php">video Gallery</a></li>
-                            <li><a href="photogallery.php">Photo Gallery</a></li>
-                            <li><a href="contact.php">contact Us</a></li>
+                            <li><a href="{% url 'support' %}">support</a></li>
+                            <li><a href="{% url 'application' %}">Application</a></li>
+                            <li><a href="{% url 'videogallery' %}">video Gallery</a></li>
+                            <li><a href="{% url 'photogallery' %}">Photo Gallery</a></li>
+                            <li><a href="{% url 'waste_management' %}">E Waste Management</a></li>
+                            <li><a href="{% url 'contact' %}">contact Us</a></li>
                         </ul>
                     </div>
                 </div>
@@ -147,69 +124,70 @@
         <!-- container -->
     </div>
       <!--  -->
-        <div class="header-menu bg-white sticky-nav d-lg-block d-none padding-0px">
-            <div class="container-fluid">
-                <div class="row">
-                    <div class="col-lg-2">
-                        <div class="logo align-self-center py-2">
-                            <a href="/"><img class="img-responsive" src="{% static 'assets/images/logo/logo.png' %}" alt="logo.jpg" /></a>
-                        </div>
-                    </div>
-                    <div class="col-lg-10">
-                        <div class="header-horizontal-menu">
-                            <ul class="menu-content">
-                                <li><a href="/">Home</a></li>
-                                <li><a href="{% url 'about' %}">About us</a></li>
-                                <li class="menu-dropdown">
-                                    <a href="#">Product<i class="ion-ios-arrow-down"></i></a>
-                                    <ul class="main-sub-menu">
+<!--        <div class="header-menu bg-white sticky-nav d-lg-block d-none padding-0px">-->
+<!--            <div class="container-fluid">-->
+<!--                <div class="row">-->
+<!--                    <div class="col-lg-2">-->
+<!--                        <div class="logo align-self-center py-2">-->
+<!--                            <a href="/"><img class="img-responsive" src="{% static 'assets/images/logo/logo.png' %}" alt="logo.jpg" /></a>-->
+<!--                        </div>-->
+<!--                    </div>-->
+<!--                    <div class="col-lg-10">-->
+<!--                        <div class="header-horizontal-menu">-->
+<!--                            <ul class="menu-content">-->
+<!--                                <li><a href="/">Home</a></li>-->
+<!--                                <li><a href="{% url 'about' %}">About us</a></li>-->
+<!--                                <li class="menu-dropdown">-->
+<!--                                    <a href="#">Product<i class="ion-ios-arrow-down"></i></a>-->
+<!--                                    <ul class="main-sub-menu">-->
 
 
-                                        {% for i in cat %}
-					{% if i.name %}
-                                        <li class="menu-dropdown position-static">
-                                            <a href="{% url 'category' i.slug %}">{{ i.name }}</a>
-                                            <ul class="main-sub-menu main-sub-menu-2">
+<!--                                        {% for i in cat %}-->
+<!--					{% if i.name %}-->
+<!--                                        <li class="menu-dropdown position-static">-->
+<!--                                            <a href="{% url 'category' i.slug %}">{{ i.name }}</a>-->
+<!--                                            <ul class="main-sub-menu main-sub-menu-2">-->
 
-                                                {% for c in i.subcategory_set.all %}
+<!--                                                {% for c in i.subcategory_set.all %}-->
 
-                                                <li>
-                                                    <a href="{% url 'sub_category' c.slug %}">{{ c.name }}</a>
-                                                    <ul class="main-sub-menu main-sub-menu-2 sub-sub-menu">
-                                                        {% for m in c.microcategory_set.all %}
-                                                        <li>
-                                                            <a href="{% url 'micro_category' m.slug %}">{{ m.name }}</a>
-                                                        </li>
-                                                        {% endfor %}
-
-
-                                                    </ul>
-                                                </li>
-                                                {% endfor %}
-
-                                            </ul>
-                                        </li>
-					{% endif %}
-                                        {% endfor %}
+<!--                                                <li>-->
+<!--                                                    <a href="{% url 'sub_category' c.slug %}">{{ c.name }}</a>-->
+<!--                                                    <ul class="main-sub-menu main-sub-menu-2 sub-sub-menu">-->
+<!--                                                        {% for m in c.microcategory_set.all %}-->
+<!--                                                        <li>-->
+<!--                                                            <a href="{% url 'micro_category' m.slug %}">{{ m.name }}</a>-->
+<!--                                                        </li>-->
+<!--                                                        {% endfor %}-->
 
 
+<!--                                                    </ul>-->
+<!--                                                </li>-->
+<!--                                                {% endfor %}-->
 
-                                    </ul>
-                                </li>
-                                <li><a href="{% url 'marketing' %}">Marketing</a></li>
+<!--                                            </ul>-->
+<!--                                        </li>-->
+<!--					{% endif %}-->
+<!--                                        {% endfor %}-->
 
-                                <li><a href="{% url 'support' %}">support</a></li>
-                                <li><a href="{% url 'application' %}">Application</a></li>
-                                <li><a href="{% url 'videogallery' %}">video Gallery</a></li>
-                                <li><a href="{% url 'photogallery' %}">Photo Gallery</a></li>
-				 <li><a href="{% url 'waste_management' %}">E Waste Management</a></li>
-                                <li><a href="{% url 'contact' %}">contact Us</a></li>
-                            </ul>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
+
+
+<!--                                    </ul>-->
+<!--                                </li>-->
+<!--                                <li><a href="{% url 'marketing' %}">Marketing</a></li>-->
+
+<!--                                <li><a href="{% url 'support' %}">support</a></li>-->
+<!--                                <li><a href="{% url 'application' %}">Application</a></li>-->
+<!--                                <li><a href="{% url 'videogallery' %}">video Gallery</a></li>-->
+<!--                                <li><a href="{% url 'photogallery' %}">Photo Gallery</a></li>-->
+<!--				 <li><a href="{% url 'waste_management' %}">E Waste Management</a></li>-->
+<!--                                <li><a href="{% url 'contact' %}">contact Us</a></li>-->
+<!--                            </ul>-->
+<!--                        </div>-->
+<!--                    </div>-->
+<!--                </div>-->
+<!--            </div>-->
+<!--        </div>-->
+
     </header>
     <!-- Header Section End Here -->
 
@@ -308,71 +286,90 @@
                 <li><a href="{% url 'contact' %}">contact Us</a></li>
             </ul> -->
             <ul class="menu-content">
-              <li><a href="index.php">Home</a></li>
-              <li><a href="about.php">About us</a></li>
+              <li><a href="/">Home</a></li>
+              <li><a href="{% url 'about' %}">About us</a></li>
+
+
               <li class="menu-dropdown">
                   <a href="#">Product<i class="ion-ios-arrow-down"></i></a>
-                  <ul class="main-sub-menu">
-                      <li class="menu-dropdown position-static">
-                          <a href="#">CCTV<i class="ion-ios-arrow-right"></i></a>
+                  <ul class="main-sub-menu" style="display:none;">
+
+                      <li  class="menu-dropdown position-static">
+
+                          {% for i in cat %}
+                          {% if i.name %}
+
+                          <a href="{% url 'category' i.slug %}">{{ i.name }}<i class="ion-ios-arrow-right"></i></a>
+                          {% for c in i.subcategory_set.all %}
                           <ul class="main-sub-menu main-sub-menu-2">
-                            <a href="#">CCTV HD<i class="ion-ios-arrow-right"></i></a>
-                            <ul class="main-sub-menu main-sub-menu-2">                              
+                            <a href="{% url 'sub_category' c.slug %}">{{ c.name }}<i class="ion-ios-arrow-right"></i></a>
+                            <ul class="main-sub-menu main-sub-menu-2">
+                                {% for m in c.microcategory_set.all %}
                                 <li>
-                                    <a href="ipc.php">IPC</a>
+                                    <a href="{% url 'micro_category' m.slug %}">{{ m.name }}</a>
                                 </li>
-                                <li>
-                                    <a href="shop-left-sidebar.php">WIFI / 4G</a>
-                                </li>
-                                <li>
-                                    <a href="ipptz.php">PTZ</a>
-                                </li>
+                                {% endfor %}
+<!--                                <li>-->
+<!--                                    <a href="shop-left-sidebar.php">WIFI / 4G</a>-->
+<!--                                </li>-->
+<!--                                <li>-->
+<!--                                    <a href="ipptz.php">PTZ</a>-->
+<!--                                </li>-->
                             </ul>
-                              <li>
-                                  <a href="ipc.php">IPC</a>
-                              </li>
-                              <li>
-                                  <a href="shop-left-sidebar.php">WIFI / 4G</a>
-                              </li>
-                              <li>
-                                  <a href="ipptz.php">PTZ</a>
-                              </li>
+<!--                              <li>-->
+<!--                                  <a href="ipc.php">IPC</a>-->
+<!--                              </li>-->
+<!--                              <li>-->
+<!--                                  <a href="shop-left-sidebar.php">WIFI / 4G</a>-->
+<!--                              </li>-->
+<!--                              <li>-->
+<!--                                  <a href="ipptz.php">PTZ</a>-->
+<!--                              </li>-->
                           </ul>
+                          {% endfor %}
+                            {% endif %}
+                          {% endfor %}
+
+
                       </li>
                       <hr>
-                      <li>
-                          <a href="panaromic-camera.php">PANAROMIC CAMERAS</a>
-                      </li>
-                      <li>
-                          <a href="dvr.php">DVR</a>
-                      </li>
-                      <li>
-                          <a href="shop-left-sidebar.php">NVR</a>
-                      </li>
-                      <li>
-                          <a href="time-attendance.php">TIME AND ATTENDANCE</a>
-                      </li>
-                      <li>
-                          <a href="only-access-control.php">DOOR LOCKS</a>
-                      </li>
-                      <li>
-                          <a href="poe-switches.php">POE SWITCHES</a>
-                      </li>
-                      <li>
-                          <a href="led-tv.php">LED TV</a>
-                      </li>
-                      <li>
-                          <a href="accessories.php">ACCESSORIES</a>
-                      </li>
+
+<!--                      <li>-->
+<!--                          <a href="panaromic-camera.php">PANAROMIC CAMERAS</a>-->
+<!--                      </li>-->
+<!--                      <li>-->
+<!--                          <a href="dvr.php">DVR</a>-->
+<!--                      </li>-->
+<!--                      <li>-->
+<!--                          <a href="shop-left-sidebar.php">NVR</a>-->
+<!--                      </li>-->
+<!--                      <li>-->
+<!--                          <a href="time-attendance.php">TIME AND ATTENDANCE</a>-->
+<!--                      </li>-->
+<!--                      <li>-->
+<!--                          <a href="only-access-control.php">DOOR LOCKS</a>-->
+<!--                      </li>-->
+<!--                      <li>-->
+<!--                          <a href="poe-switches.php">POE SWITCHES</a>-->
+<!--                      </li>-->
+<!--                      <li>-->
+<!--                          <a href="led-tv.php">LED TV</a>-->
+<!--                      </li>-->
+<!--                      <li>-->
+<!--                          <a href="accessories.php">ACCESSORIES</a>-->
+<!--                      </li>-->
                   </ul>
               </li>
-              <li><a href="marketing.php">Marketing</a></li>
 
-              <li><a href="login.php">support</a></li>
-              <li><a href="application.php">Application</a></li>
-              <li><a href="videogallery.php">video Gallery</a></li>
-              <li><a href="photogallery.php">Photo Gallery</a></li>
-              <li><a href="contact.php">contact Us</a></li>
+
+              <li><a href="{% url 'marketing' %}">Marketing</a></li>
+
+              <li><a href="{% url 'support' %}">support</a></li>
+              <li><a href="{% url 'application' %}">Application</a></li>
+              <li><a href="{% url 'videogallery' %}">video Gallery</a></li>
+              <li><a href="{% url 'photogallery' %}">Photo Gallery</a></li>
+              <li><a href="{% url 'waste_management' %}">E Waste Management</a></li>
+              <li><a href="{% url 'contact' %}">contact Us</a></li>
           </ul>
             </div>
            
@@ -495,7 +492,7 @@
         <div class="row mt-4">
           <hr>
           <div class="col-lg-4 my-3">
-          <h6>Address</h6>
+<!--          <h6>Address</h6>-->
               <p class="add">
                 <span class="address fw-bold">USA Office</span>:- <br> <span class="text-danger fw-bold">DBS SECURITY SYSTEM PVT LTD</span> <br> 1820 Avenue M#468 Brooklyn,NY 11230 USA <br>
                 <span class="email">Email:</span>
